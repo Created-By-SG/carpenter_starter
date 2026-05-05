@@ -1,0 +1,131 @@
+{
+  "business": {
+    "name": "Starter Carpentry",
+    "trade": "carpentry",
+    "trade_plural": "carpenters",
+    "phone": "0400000000",
+    "email": "info@startercarpentry.com.au",
+    "year": 2026,
+    "areas": [
+      "northern Gold Coast",
+      "central suburbs",
+      "southern beaches"
+    ],
+    "standards": "Australian Standard AS 4386",
+    "disclaimer": "",
+    "social": {
+      "instagram": "#",
+      "facebook": "#"
+    },
+    "tagline": "Northern Gold Coast Specialists"
+  },
+  "seo": {
+    "title_suffix": "| Starter Carpentry | Gold Coast",
+    "description_pattern": "{service} in {suburb} \u2014 {business_name}. Serving {area}."
+  },
+  "services": [
+    {
+      "slug": "full-home-renovations",
+      "title": "Full Home Renovations",
+      "hero_image": "full_home_renovations.webp",
+      "showcase_image": "full_home_renovations.webp",
+      "anchor_suburb": "burleigh"
+    },
+    {
+      "slug": "custom-joinery-cabinetry",
+      "title": "Custom Joinery & Cabinetry",
+      "hero_image": "custom_cabinet.webp",
+      "showcase_image": "custom_cabinet.webp",
+      "anchor_suburb": "palm-beach"
+    },
+    {
+      "slug": "kitchen-bathroom-renovations",
+      "title": "Kitchen & Bathroom Renovations",
+      "hero_image": "bathroom.webp",
+      "showcase_image": "bathroom.webp",
+      "anchor_suburb": "burleigh"
+    },
+    {
+      "slug": "timber-decking-outdoor-living",
+      "title": "Timber Decking & Outdoor Living",
+      "hero_image": "Timber_Decking.webp",
+      "showcase_image": "Timber_Decking.webp",
+      "anchor_suburb": "palm-beach"
+    },
+    {
+      "slug": "heritage-home-restorations",
+      "title": "Heritage Home Restorations",
+      "hero_image": "flooring1.webp",
+      "showcase_image": "flooring1.webp",
+      "anchor_suburb": "burleigh"
+    }
+  ],
+  "territories": [
+    {
+      "slug": "burleigh",
+      "name": "Burleigh Heads",
+      "region": "goldcoast",
+      "hero_image": "hero.webp"
+    },
+    {
+      "slug": "palm-beach",
+      "name": "Palm Beach",
+      "region": "goldcoast",
+      "hero_image": "working.webp"
+    },
+    {
+      "slug": "elanora",
+      "name": "Elanora",
+      "region": "goldcoast",
+      "hero_image": "hero.webp"
+    },
+    {
+      "slug": "currumbin",
+      "name": "Currumbin",
+      "region": "goldcoast",
+      "hero_image": "working.webp"
+    },
+    {
+      "slug": "tugun",
+      "name": "Tugun",
+      "region": "goldcoast",
+      "hero_image": "hero.webp"
+    },
+    {
+      "slug": "miami",
+      "name": "Miami",
+      "region": "goldcoast",
+      "hero_image": "working.webp"
+    },
+    {
+      "slug": "mermaid-beach",
+      "name": "Mermaid Beach",
+      "region": "goldcoast",
+      "hero_image": "hero.webp"
+    },
+    {
+      "slug": "mermaid-waters",
+      "name": "Mermaid Waters",
+      "region": "goldcoast",
+      "hero_image": "working.webp"
+    },
+    {
+      "slug": "varsity-lakes",
+      "name": "Varsity Lakes",
+      "region": "goldcoast",
+      "hero_image": "hero.webp"
+    },
+    {
+      "slug": "tallebudgera",
+      "name": "Tallebudgera",
+      "region": "goldcoast",
+      "hero_image": "working.webp"
+    }
+  ],
+  "voice": [
+    "direct",
+    "experienced",
+    "local",
+    "no-fluff"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "colors": {
+    "primary": "#1a2744",
+    "primary_light": "#243656",
+    "accent": "#e67e22",
+    "accent_light": "#f39c12",
+    "background": "#f8f9fa",
+    "surface": "#ffffff",
+    "text": "#495057",
+    "muted": "#6c757d",
+    "border": "#e9ecef",
+    "off_white": "#f8f9fa",
+    "light_gray": "#e9ecef",
+    "gray": "#6c757d"
+  },
+  "fonts": {
+    "heading": "Inter",
+    "body": "Inter",
+    "url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+  },
+  "background_style": {
+    "type": "gradient",
+    "value": "linear-gradient(170deg, #f5f7fa 0%, #fdf2e9 10%, #eef5f9 20%, #f9f0f5 30%, #f5f9f5 40%, #fdf5f0 50%, #f0f4f9 60%, #f9f5f0 70%, #f0f9f5 80%, #f5f0f5 90%, #f5f7fa 100%)"
+  },
+  "shadows": {
+    "card": "0 4px 20px rgba(26, 39, 68, 0.12)",
+    "elevated": "0 10px 40px rgba(26, 39, 68, 0.18)",
+    "button": "0 3px 8px rgba(26, 39, 68, 0.12)",
+    "button_hover": "0 8px 20px rgba(26, 39, 68, 0.22)",
+    "accent_hover": "0 8px 20px rgba(230, 126, 34, 0.25)"
+  },
+  "radii": {
+    "card": "16px",
+    "button": "10px",
+    "image": "12px",
+    "icon": "8px",
+    "input": "10px"
+  }
+}
