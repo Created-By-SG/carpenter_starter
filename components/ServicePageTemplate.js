@@ -6,7 +6,7 @@ import ScopeList from './ScopeList';
 import WhyChooseGrid from './WhyChooseGrid';
 import CtaBanner from './CtaBanner';
 import Link from 'next/link';
-import layoutConfig from '@/config/layout.json';
+import layoutConfig from '@/data/layout';
 
 export default function ServicePageTemplate({ service }) {
   const config = layoutConfig.service_page;

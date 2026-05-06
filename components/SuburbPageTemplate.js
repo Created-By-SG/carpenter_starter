@@ -2,7 +2,7 @@ import { site } from '@/data/site';
 import PageHero from './PageHero';
 import ServiceLinks from './ServiceLinks';
 import CtaBlocks from './CtaBlocks';
-import layoutConfig from '@/config/layout.json';
+import layoutConfig from '@/data/layout';
 
 export default function SuburbPageTemplate({ suburb }) {
   const config = layoutConfig.suburb_page;
