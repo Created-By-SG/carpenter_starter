@@ -80,7 +80,6 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), system-ui, sans-serif
   opacity: 0; visibility: hidden; pointer-events: none;
   transition: opacity 0.15s ease, visibility 0.15s ease;
 }
-.nav-dropdown:hover .nav-dropdown-menu,
 .nav-dropdown-menu.is-open,
 .nav-dropdown:focus-within .nav-dropdown-menu {
   opacity: 1; visibility: visible; pointer-events: auto;
@@ -350,8 +349,12 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), system-ui, sans-serif
 
 /* CTA */
 .cta-section { background: var(--navy); color: var(--white); text-align: center; padding: 60px 20px; }
-.cta-section h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 12px; }
+.cta-section h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; margin-bottom: 12px; color: var(--white); }
 .cta-section p { opacity: 0.85; margin-bottom: 28px; font-size: 1.05rem; }
+.cta-section .btn,
+.cta-section .btn-primary,
+.cta-section .btn-accent,
+.cta-section .btn-secondary { color: var(--white); }
 
 /* Footer */
 .footer { background: var(--navy); color: var(--white); padding: 40px 0 100px; text-align: center; }
