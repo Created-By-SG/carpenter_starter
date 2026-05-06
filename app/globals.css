@@ -50,6 +50,36 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), system-ui, sans-serif
 .nav-links { display: none; align-items: center; gap: 32px; font-weight: 600; font-size: 0.95rem; color: var(--navy); }
 .nav-links a { transition: color 0.3s; }
 .nav-links a:hover { color: var(--orange); }
+
+/* Services dropdown — listed via Nav.js, hover on desktop, tap on mobile */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  background: none; border: none; padding: 0; margin: 0;
+  font: inherit; color: inherit; cursor: pointer;
+  display: inline-flex; align-items: center;
+  font-weight: 600; transition: color 0.3s;
+}
+.nav-dropdown-trigger:hover, .nav-dropdown:hover .nav-dropdown-trigger { color: var(--orange); }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: var(--surface, #fff); border: 1px solid var(--border, #e9ecef);
+  border-radius: var(--radius-card, 12px); box-shadow: var(--shadow, 0 8px 24px rgba(26,39,68,0.12));
+  min-width: 240px; padding: 8px; z-index: 100;
+  display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown-menu.is-open,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  opacity: 1; visibility: visible; pointer-events: auto;
+}
+.nav-dropdown-menu a {
+  padding: 10px 14px; border-radius: 6px;
+  color: var(--navy); white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-dropdown-menu a:hover { background: rgba(230,126,34,0.08); color: var(--orange); }
 @media (min-width: 1024px) { .nav-links { display: flex; } }
 
 /* Reveal animations */
@@ -100,6 +130,59 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), system-ui, sans-serif
 
 /* Disclaimer banner is given inline colours by the component — this just adds spacing */
 .disclaimer-banner { margin-bottom: 0; }
+
+/*
+ * Grid column helpers — every section that uses cols-N comes from layoutConfig.
+ * Components write 'cols-3' etc. as a class name. Without these rules, the grid
+ * defaults to 1 column and authority/why-choose sections collapse into a stack.
+ * The mobile breakpoint forces all multi-column grids back to 1 column.
+ */
+.cols-1 { grid-template-columns: 1fr; }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 768px) {
+  .cols-2, .cols-3, .cols-4 { grid-template-columns: 1fr; }
+}
+@media (min-width: 769px) and (max-width: 1023px) {
+  .cols-3, .cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Authority + why-choose section wrappers and grids */
+.authority-section { padding: 48px 0; max-width: var(--container-max); margin: 0 auto; }
+.authority-section h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+.authority-grid { margin-top: 24px; }
+.why-grid { margin-top: 24px; }
+
+/*
+ * Card style variants (set via config/layout.json: card_style "flat" | "bordered"
+ * | "shadowed" | "minimal"). Components write 'card-bordered' etc.; these rules
+ * give each variant its visual weight.
+ */
+.authority-card, .why-card {
+  background: var(--surface, #fff);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.authority-card.card-bordered, .why-card.card-bordered { border: 1px solid var(--border, #e9ecef); }
+.authority-card.card-shadowed, .why-card.card-shadowed { box-shadow: var(--shadow, 0 4px 20px rgba(26,39,68,0.12)); }
+.authority-card.card-flat, .why-card.card-flat { background: rgba(26,39,68,0.02); }
+.authority-card.card-minimal, .why-card.card-minimal { background: transparent; padding-left: 0 !important; padding-right: 0 !important; }
+.authority-card:hover, .why-card:hover { transform: translateY(-2px); }
+
+/* Scope list — bullets render in a contained, readable column rather than full-bleed */
+.scope-section { max-width: 800px; margin: 0 auto; padding: 32px 20px; }
+.scope-section ul { list-style: none; padding: 0; margin: 24px 0 0 0; }
+.scope-section li {
+  padding: 12px 0 12px 20px;
+  border-bottom: 1px solid var(--border, #e9ecef);
+  position: relative;
+  line-height: 1.6;
+}
+.scope-section li:before {
+  content: "•"; color: var(--orange); font-weight: 700;
+  position: absolute; left: 0;
+}
+.scope-section li:last-child { border-bottom: none; }
 
 .section-title {
   font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 800; color: var(--navy);
@@ -158,8 +241,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading), system-ui, sans-serif
   text-align: center; overflow: hidden; background: var(--off-white);
 }
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
-.hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.4) 100%); z-index: 1; }
+.hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.7) 100%); z-index: 1; }
 .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 20px; }
 .hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; color: var(--navy); line-height: 1.1; margin-bottom: 20px; }
 .hero p { font-size: clamp(1.1rem, 3vw, 1.4rem); color: var(--gray); margin-bottom: 32px; font-weight: 400; }

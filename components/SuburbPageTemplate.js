@@ -13,6 +13,7 @@ export default function SuburbPageTemplate({ suburb }) {
         title={`${site.trade.charAt(0).toUpperCase() + site.trade.slice(1)} in ${suburb.name}`}
         subtitle={suburb.intro}
         image={suburb.heroImage}
+        ctaText="Get a Quote"
       />
 
       <section className="section">

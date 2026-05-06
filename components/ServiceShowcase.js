@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function ServiceShowcase({ service, flip }) {
   return (
     <section className="section section-pad">
@@ -13,9 +15,9 @@ export default function ServiceShowcase({ service, flip }) {
             {service.tagline && <span className="tagline">{service.tagline}</span>}
             {service.paragraphs?.map((p, i) => <p key={i}>{p}</p>)}
             {service.locations && <span className="locations">{service.locations}</span>}
-            <button className="btn btn-primary" onClick={() => document.dispatchEvent(new Event('openContact'))}>
+            <Link href={`/services/${service.slug}/`} className="btn btn-primary">
               {service.ctaText || 'Learn more'}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

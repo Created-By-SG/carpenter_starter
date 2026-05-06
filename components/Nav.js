@@ -3,10 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { site } from '@/data/site';
+import { services } from '@/data/services';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const initials = site.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const serviceList = Object.values(services);
 
   return (
     <>
@@ -41,7 +44,36 @@ export default function Nav() {
 
           <nav className="nav-links">
             <Link href="/">Home</Link>
-            <Link href="/#services">Services</Link>
+            <div
+              className="nav-dropdown"
+              onMouseEnter={() => setServicesOpen(true)}
+              onMouseLeave={() => setServicesOpen(false)}
+            >
+              <button
+                type="button"
+                className="nav-dropdown-trigger"
+                aria-haspopup="true"
+                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen(v => !v)}
+              >
+                Services
+                <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" style={{ marginLeft: 4 }}>
+                  <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className={`nav-dropdown-menu ${servicesOpen ? 'is-open' : ''}`} role="menu">
+                {serviceList.map(s => (
+                  <Link
+                    key={s.slug}
+                    href={`/services/${s.slug}/`}
+                    role="menuitem"
+                    onClick={() => setServicesOpen(false)}
+                  >
+                    {s.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
             <Link href="/#about">About</Link>
             <Link href="/contact/">Contact</Link>
           </nav>

@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { site } from '@/data/site';
 
-export default function PageHero({ title, subtitle, image, ctaText, ctaHref }) {
+export default function PageHero({ title, subtitle, image, ctaText = 'Get a Quote', ctaHref }) {
   useEffect(() => {
     // IntersectionObserver for reveal animations
     const observer = new IntersectionObserver(entries => {
