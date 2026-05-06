@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { site } from '@/data/site';
 import { services } from '@/data/services';
@@ -8,8 +8,18 @@ import { services } from '@/data/services';
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const leaveTimer = useRef(null);
   const initials = site.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const serviceList = Object.values(services);
+
+  const handleMouseEnter = () => {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current);
+    setServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    leaveTimer.current = setTimeout(() => setServicesOpen(false), 200);
+  };
 
   return (
     <>
@@ -46,8 +56,8 @@ export default function Nav() {
             <Link href="/">Home</Link>
             <div
               className="nav-dropdown"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
             >
               <button
                 type="button"
@@ -61,7 +71,12 @@ export default function Nav() {
                   <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
-              <div className={`nav-dropdown-menu ${servicesOpen ? 'is-open' : ''}`} role="menu">
+              <div 
+                className={`nav-dropdown-menu ${servicesOpen ? 'is-open' : ''}`} 
+                role="menu"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
                 {serviceList.map(s => (
                   <Link
                     key={s.slug}
@@ -79,7 +94,7 @@ export default function Nav() {
           </nav>
 
           <div className="nav-actions">
-            <button className="nav-btn nav-btn-text" onClick={() => document.dispatchEvent(new Event('openContact'))}>
+            <button className="nav-btn nav-btn-text" onClick={() => document.dispatchEvent(new CustomEvent('openContact', { bubbles: true, cancelable: true }))}>
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
               Text
             </button>
