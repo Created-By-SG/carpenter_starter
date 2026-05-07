@@ -9,11 +9,12 @@ const ICONS = [
 
 export default function FeatureGrid({ features }) {
   return (
-    <div className="features-grid reveal-up">
+    <div className="feature-grid reveal-up">
       {features.map((feature, i) => (
         <div key={i} className="feature-box">
           <div className="feature-icon">{ICONS[i] || ICONS[0]}</div>
-          <h4>{feature.title}</h4>
+          <h3>{feature.title}</h3>
+          {feature.text && <p>{feature.text}</p>}
         </div>
       ))}
     </div>

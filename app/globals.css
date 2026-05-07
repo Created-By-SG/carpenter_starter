@@ -382,8 +382,8 @@ p  { line-height: var(--leading-relaxed); }
 
 .nav-actions { display: none; align-items: center; gap: var(--sp-3); }
 .nav-btn { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 10px 16px; border-radius: var(--radius); font-weight: 600; font-size: 0.9rem; transition: all var(--dur); }
-.nav-btn-text { background: transparent; color: var(--navy); border: 1px solid var(--border); }
-.nav-btn-text:hover { background: var(--surface-alt); }
+.nav-btn-text { background: var(--surface); color: var(--navy); border: 1.5px solid var(--navy); }
+.nav-btn-text:hover { background: var(--navy); color: var(--white); }
 .nav-btn-call { background: var(--orange); color: var(--white); border: none; }
 .nav-btn-call:hover { background: var(--orange-dark); }
 
@@ -479,8 +479,19 @@ p  { line-height: var(--leading-relaxed); }
 
 /* FEATURES GRID */
 .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--gap); margin-top: var(--sp-6); }
-.feature-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--sp-5); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); }
+.feature-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: var(--sp-5); transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease); text-align: center; }
 .feature-box:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--orange); }
+.feature-icon {
+  width: 56px; height: 56px;
+  border-radius: var(--radius);
+  background: rgba(230, 126, 34, 0.1);
+  color: var(--orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-4);
+}
+.feature-icon svg { width: 28px; height: 28px; display: block; }
 .feature-box h3 { font-size: 1.05rem; margin-bottom: var(--sp-2); color: var(--navy); }
 .feature-box p { font-size: var(--t-small); color: var(--text-muted); }
 
@@ -498,6 +509,16 @@ p  { line-height: var(--leading-relaxed); }
 .testimonial-nav.next { right: -8px; }
 .testimonial-nav svg { width: 18px; height: 18px; }
 .testimonials-dots { display: flex; gap: 6px; justify-content: center; margin-top: var(--sp-4); }
+.testimonials-dots .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.testimonials-dots .dot.active {
+  background: var(--orange);
+  transform: scale(1.3);
+}
 
 /* FAQ */
 .faq-list { max-width: 800px; margin: var(--sp-6) auto 0 auto; }
@@ -510,14 +531,75 @@ p  { line-height: var(--leading-relaxed); }
 .faq-item.is-open .faq-answer { max-height: 600px; }
 .faq-answer-inner { padding: 0 0 var(--sp-5) 0; color: var(--text-muted); line-height: var(--leading-relaxed); }
 
-/* BEFORE / AFTER SLIDER */
-.ba-slider-wrap { margin-top: var(--sp-6); display: grid; gap: var(--sp-7); }
-.ba-slider { position: relative; aspect-ratio: 3 / 2; border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow); cursor: ew-resize; user-select: none; }
-.ba-slider img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.ba-slider .ba-after { clip-path: inset(0 0 0 50%); }
-.ba-slider-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--white); transform: translateX(-50%); }
-.ba-slider-handle::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background: var(--white); border-radius: 50%; box-shadow: var(--shadow); }
-.ba-label { padding: var(--sp-3) 0 0 0; text-align: center; font-weight: 600; color: var(--navy); }
+/* BEFORE / AFTER SLIDER — ba-slider-wrap is the slider itself; before/after
+   are stacked absolutely with after clipped via inline style from JS.
+   .ba-grid is the OUTER wrapper for multiple sliders on a page. */
+.ba-grid { display: grid; gap: var(--sp-7); margin-top: var(--sp-6); }
+.ba-slider-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: ew-resize;
+  user-select: none;
+  margin-top: var(--sp-6);
+  background: var(--surface-alt);
+}
+.ba-slider-wrap + .ba-slider-wrap { margin-top: var(--sp-7); }
+.ba-before, .ba-after { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ba-img-fill { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ba-handle {
+  position: absolute; top: 0; bottom: 0;
+  width: 4px; background: var(--white);
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: auto;
+  cursor: ew-resize;
+}
+.ba-handle-line { width: 100%; height: 100%; background: var(--white); }
+.ba-handle-knob {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  background: var(--white);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+}
+.ba-handle-knob svg { width: 18px; height: 18px; display: block; }
+.ba-handle-knob::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 5px 7px 5px 0;
+  border-color: transparent var(--navy) transparent transparent;
+  opacity: 0.3;
+}
+.ba-label {
+  position: absolute;
+  top: var(--sp-4);
+  padding: 6px 12px;
+  background: rgba(26, 39, 68, 0.85);
+  color: var(--white);
+  font-weight: 600;
+  font-size: var(--t-tiny);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  z-index: 4;
+  pointer-events: none;
+}
+.ba-label-before { left: var(--sp-4); }
+.ba-label-after  { right: var(--sp-4); }
 
 .scroll-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); transform-origin: left; z-index: 999; transition: transform 0.1s linear; }
 

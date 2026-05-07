@@ -56,7 +56,7 @@ export default function HomePage() {
         <div className="container">
           <h2 className="section-title reveal-up">Our Work</h2>
           <p className="section-subtitle reveal-up">Drag the slider to see the transformation</p>
-          <div className="ba-slider-wrap reveal-up">
+          <div className="ba-grid reveal-up">
             {beforeAfter.map((item, i) => (
               <BeforeAfterSlider key={i} title={item.title} before={`/images/${item.before}`} after={`/images/${item.after}`} />
             ))}
