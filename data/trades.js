@@ -1,1 +1,0 @@
-export const trades = "Your project team includes licensed carpenters, a registered builder, and specialist joiners. For plumbing, electrical, and painting we use the same trusted trades on every job.";
