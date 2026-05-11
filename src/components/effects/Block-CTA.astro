@@ -1,0 +1,66 @@
+---
+interface Props {
+  label?: string;
+  href?: string;
+  modal?: boolean;
+}
+
+const { label = 'Get A Free Quote', href, modal = false } = Astro.props;
+const uid = `cta-magnetic-${Math.random().toString(36).slice(2, 9)}`;
+const attrs = modal ? { type: 'button', onclick: 'openQuoteModal()' } : href ? { href } : { type: 'button' };
+---
+
+{href && !modal ? (
+  <a class="cta-magnetic" id={uid} {...attrs}>{label}</a>
+) : (
+  <button class="cta-magnetic" id={uid} {...attrs}>{label}</button>
+)}
+
+<style>
+  .cta-magnetic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    padding: 14px 28px;
+    border: 2px solid var(--button-primary-border);
+    border-radius: 8px;
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    box-shadow: var(--button-primary-shadow);
+    cursor: pointer;
+    font: inherit;
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    transition: transform 0.18s ease, background 0.18s ease;
+    will-change: transform;
+  }
+
+  .cta-magnetic:hover {
+    background: #0f766e;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-magnetic {
+      transition: background 0.18s ease;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var el = document.getElementById(uid);
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    el.addEventListener('mousemove', function (event) {
+      var rect = el.getBoundingClientRect();
+      var x = event.clientX - rect.left - rect.width / 2;
+      var y = event.clientY - rect.top - rect.height / 2;
+      el.style.transform = 'translate(' + x * 0.18 + 'px, ' + y * 0.22 + 'px)';
+    });
+
+    el.addEventListener('mouseleave', function () {
+      el.style.transform = 'translate(0, 0)';
+    });
+  })();
+</script>

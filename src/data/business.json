@@ -1,0 +1,82 @@
+{
+  "name": "Premium Carpenter",
+  "phone": "0400 000 000",
+  "phoneRaw": "0400000000",
+  "email": "hello@premiumcarpenter.com.au",
+  "address": "Sanctuary Cove QLD 4212",
+  "hours": "Monday to Friday: 7am to 5pm | Saturday: By appointment",
+  "rating": "5.0",
+  "reviewCount": "127",
+  "yearsExperience": 15,
+  "tradeType": "carpenter",
+  "licenseNumber": "Licensed & Insured",
+  "insurance": "$20M public liability",
+  "domain": "https://premiumcarpenter.com.au",
+  "gmbUrl": "https://g.page/premiumcarpenter",
+  "ownerName": "John Smith",
+  "serviceArea": "Gold Coast",
+  "logoText": "Premium Carpenter",
+  "logoInitials": "PC",
+  "reviews": [
+    {
+      "quote": "We had our entire kitchen and bathroom renovated, and the results are incredible. The craftsmanship was flawless, and the team was professional, friendly, and always kept us updated.",
+      "name": "Jess & Nathan",
+      "suburb": "Hope Island"
+    },
+    {
+      "quote": "Premium Carpenter built our dream deck and outdoor kitchen. The timber work is absolutely beautiful and the team was punctual, clean, and a pleasure to deal with.",
+      "name": "Michael & Sarah",
+      "suburb": "Sanctuary Cove"
+    },
+    {
+      "quote": "From the first quote to the final walkthrough, everything was handled professionally. Our full home renovation turned out better than we imagined.",
+      "name": "The Chen Family",
+      "suburb": "Helensvale"
+    },
+    {
+      "quote": "We needed custom cabinetry for our new build and Premium Carpenter delivered perfection. Every joint and every finish was immaculate.",
+      "name": "David & Emma",
+      "suburb": "Upper Coomera"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How much does a full home renovation cost?",
+      "a": "Every project is unique. We provide detailed, transparent quotes after an initial consultation and site visit. Costs depend on scope, materials, and timeline."
+    },
+    {
+      "q": "Do you build custom cabinetry and joinery?",
+      "a": "Yes. Custom joinery is one of our specialties, from built in wardrobes to bespoke vanities and storage."
+    },
+    {
+      "q": "Can I renovate my bathroom and kitchen at the same time?",
+      "a": "Absolutely. We often manage multi room renovations to minimise disruption and deliver a cohesive result across your home."
+    },
+    {
+      "q": "Can you handle both interior and exterior renovations?",
+      "a": "Yes. From kitchen remodels to outdoor decks and pergolas, we manage carpentry and renovation work inside and out."
+    },
+    {
+      "q": "Do you service the whole Gold Coast?",
+      "a": "Yes. We service the whole Gold Coast, with regular quotes across Coomera, Beenleigh, Yatala, Stapylton, Ormeau, Pimpama, Upper Coomera, Oxenford, Helensvale, and Hope Island."
+    },
+    {
+      "q": "Can you help with small carpentry repairs?",
+      "a": "Yes. We handle small repairs, timber maintenance, door adjustments, fascia repairs, rot repairs, and larger renovation work."
+    },
+    {
+      "q": "Are you licensed and insured?",
+      "a": "Yes. Premium Carpenter is licensed and insured, and every project is quoted clearly before work begins."
+    },
+    {
+      "q": "Do you provide free quotes?",
+      "a": "Yes. We provide free quotes after understanding your project, location, access, materials, and the finish you want."
+    }
+  ],
+  "whyUs": [
+    "Licensed and insured professionals",
+    "5 star reviews from homeowners",
+    "Premium finishes and lasting materials",
+    "Local expertise with Gold Coast properties"
+  ]
+}

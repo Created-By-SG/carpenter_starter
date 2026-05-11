@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import business from '../data/business.json';
+import servicesData from '../data/services.json';
+import suburbsData from '../data/suburbs.json';
+import Process from '../components/carpenter/Process.astro';
+import WhyUs from '../components/carpenter/WhyUs.astro';
+import Areas from '../components/carpenter/Areas.astro';
+import Gallery from '../components/carpenter/Gallery.astro';
+import Testimonials from '../components/carpenter/Testimonials.astro';
+import FAQ from '../components/carpenter/FAQ.astro';
+import CTA from '../components/carpenter/CTA.astro';
+import BlockServices from '../components/effects/Block-Services.astro';
+import BlockServiceAreaMap from '../components/effects/Block-ServiceAreaMap.astro';
+import TextEffectSection from '../components/effects/Text-Effect-Home-Section.astro';
+import TextEffectBody from '../components/effects/Text-Effect-Home-Body.astro';
+
+const services = Object.entries(servicesData as Record<string, any>);
+const suburbs = Object.entries(suburbsData as Record<string, any>);
+const serviceCards = services.map(([slug, service]) => ({
+  title: service.shortTitle,
+  description: service.shortDescription,
+  href: `/services/${slug}/`,
+}));
+const mapSuburbs = suburbs.map(([slug, suburb]) => ({
+  slug,
+  label: suburb.pageMeta.title.replace('Carpenters ', ''),
+}));
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: business.faqs.map((faq) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } }))
+});
+---
+<Base title={`${business.name} | Premium Carpentry & Renovations`} description={`${business.name} provides premium carpentry, joinery and renovations across the ${business.serviceArea}.`} canonicalUrl={`${business.domain}/`}>
+  <script type="application/ld+json" set:html={faqSchema} slot="head" />
+  <main>
+    <section class="hero">
+      <div class="hero-bg"><img src="/images/hero.webp" alt="Starter Carpentry hero" /></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Premium Carpentry & Renovations on the Gold Coast</h1>
+        <p>Custom Joinery. Luxury Renovations. Done Right.</p>
+        <div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Grab a Free Quote Today</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div>
+      </div>
+    </section>
+
+    <WhyUs items={business.whyUs} />
+
+    <section class="section service-section" id="services">
+      <div class="container">
+        <h2 class="section-title reveal-up"><TextEffectSection text="Our Services" /></h2>
+        <p class="section-subtitle reveal-up"><TextEffectBody text={`Premium carpentry, joinery and renovation services across the ${business.serviceArea}. Every service is planned for durable finishes, practical use, and clean workmanship.`} /></p>
+        <BlockServices services={serviceCards} />
+        <div style="text-align:center;margin-top:24px;">
+          <button type="button" class="btn btn-primary btn-lg" onclick="openModal()">Get A Free Quote</button>
+        </div>
+      </div>
+    </section>
+
+    <Gallery />
+    <Process />
+    <Testimonials reviews={business.reviews} />
+    <FAQ faqs={business.faqs} />
+
+    <Areas suburbs={suburbs} heading={`Carpentry Services Across The ${business.serviceArea}`} body={`We service the whole ${business.serviceArea}. These are example suburbs where we regularly quote carpentry and renovation work.`} />
+    <section class="section service-section">
+      <div class="container reveal-up">
+        <BlockServiceAreaMap
+          heading={`Carpentry Across The ${business.serviceArea}`}
+          body={`We service the whole ${business.serviceArea} area and regularly quote carpentry, joinery and renovation work in these local suburbs.`}
+          serviceArea={business.serviceArea}
+          suburbs={mapSuburbs}
+          mapQuery={`${business.serviceArea}, Queensland, Australia`}
+        />
+      </div>
+    </section>
+    <CTA heading="Ready To Talk Through Your Project?" body="Send a quick message and we will help you work out the clearest next step." />
+  </main>
+</Base>

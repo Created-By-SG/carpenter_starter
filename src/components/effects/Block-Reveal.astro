@@ -1,0 +1,49 @@
+---
+const uid = `block-reveal-fade-up-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="block-reveal-fade-up" id={uid}>
+  <slot />
+</div>
+
+<style>
+  .block-reveal-fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .block-reveal-fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .block-reveal-fade-up {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var el = document.getElementById(uid);
+    if (!el) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('in-view');
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          el.classList.add('in-view');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(el);
+  })();
+</script>

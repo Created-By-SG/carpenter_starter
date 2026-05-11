@@ -1,0 +1,122 @@
+---
+import ReviewsCarouselSwipe from './Block-Reviews.astro';
+import FaqAccordion from './Block-FAQ.astro';
+
+interface Review {
+  quote: string;
+  name: string;
+  suburb?: string;
+}
+
+interface Faq {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  reviews?: Review[];
+  faqs?: Faq[];
+  rating?: string | number;
+  reviewCount?: string | number;
+}
+
+const { reviews = [], faqs = [], rating = '5.0', reviewCount = '' } = Astro.props;
+const starSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+---
+
+<div class="reviews-faq-combo">
+  <section class="reviews-faq-combo__reviews">
+    <p class="reviews-faq-combo__label">What Our Customers Say</p>
+    <div class="reviews-faq-combo__rating">
+      <span class="reviews-faq-combo__score">{rating}</span>
+      <span class="reviews-faq-combo__stars" set:html={starSvg.repeat(5)} />
+      {reviewCount && <span class="reviews-faq-combo__count">{reviewCount} Google reviews</span>}
+    </div>
+    <ReviewsCarouselSwipe reviews={reviews} />
+    <p class="reviews-faq-combo__verified">Verified by TrustIndex</p>
+  </section>
+
+  <section class="reviews-faq-combo__faq">
+    <h2 class="reviews-faq-combo__heading">Frequently Asked Questions</h2>
+    <FaqAccordion faqs={faqs} />
+  </section>
+</div>
+
+<style>
+  .reviews-faq-combo {
+    display: grid;
+    gap: 36px;
+    width: 100%;
+    max-width: 100%;
+    overflow: clip;
+    box-sizing: border-box;
+  }
+
+  .reviews-faq-combo__reviews,
+  .reviews-faq-combo__faq {
+    min-width: 0;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .reviews-faq-combo__label {
+    margin: 0 0 8px;
+    color: var(--hero-highlight-text);
+    font-size: var(--font-size-section-label);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-section);
+    text-transform: uppercase;
+  }
+
+  .reviews-faq-combo__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    min-width: 0;
+  }
+
+  .reviews-faq-combo__score {
+    color: var(--section-heading-text);
+    font-size: var(--font-size-sub-heading);
+    font-weight: var(--font-weight-black);
+  }
+
+  .reviews-faq-combo__stars {
+    color: var(--nav-star-color);
+  }
+
+  .reviews-faq-combo__count,
+  .reviews-faq-combo__verified {
+    color: var(--section-muted-text);
+    font-size: var(--font-size-body-small);
+  }
+
+  .reviews-faq-combo__verified {
+    margin: 12px 0 0;
+    font-size: var(--font-size-tiny);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .reviews-faq-combo__heading {
+    color: var(--section-heading-text);
+    font-size: var(--font-size-sub-heading);
+    font-weight: var(--font-weight-black);
+    margin: 0 0 24px;
+    text-shadow: var(--section-heading-shadow);
+  }
+
+  @media (max-width: 743px) {
+    .reviews-faq-combo {
+      gap: 32px;
+      padding-inline: 1px;
+    }
+
+    .reviews-faq-combo__rating {
+      gap: 8px;
+    }
+  }
+</style>

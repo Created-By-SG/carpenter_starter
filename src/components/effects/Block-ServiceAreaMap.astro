@@ -1,0 +1,311 @@
+---
+interface ServiceAreaSuburb {
+  slug: string;
+  label: string;
+}
+
+interface Props {
+  heading?: string;
+  body?: string;
+  mainSuburb?: string;
+  serviceArea?: string;
+  suburbs?: ServiceAreaSuburb[];
+  mapQuery?: string;
+}
+
+const {
+  heading = 'Service Area',
+  body = 'We regularly work across these local suburbs and the surrounding area.',
+  mainSuburb = '',
+  serviceArea = 'Gold Coast',
+  suburbs = [],
+  mapQuery,
+} = Astro.props;
+
+function cleanLabel(label: string) {
+  return label.replace(/^Painters\s+(in\s+)?/i, '').trim();
+}
+
+const cleanedSuburbs = suburbs.map((suburb) => ({
+  ...suburb,
+  label: cleanLabel(suburb.label),
+}));
+
+const primaryLocation = mainSuburb || serviceArea || cleanedSuburbs[0]?.label;
+const query = mapQuery || `${primaryLocation}, ${serviceArea}, Queensland, Australia`;
+const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+---
+
+<div class="service-area-map" data-service-area-map>
+  <div class="service-area-map__copy">
+    <p class="service-area-map__eyebrow">Local Coverage</p>
+    <h2>{heading}</h2>
+    <p>{body}</p>
+
+    {cleanedSuburbs.length > 0 && (
+      <div class="service-area-map__pills" aria-label="Covered suburbs">
+        {cleanedSuburbs.map((suburb) => (
+          <a href={`/suburbs/${suburb.slug}/`} class="service-area-map__pill">{suburb.label}</a>
+        ))}
+      </div>
+    )}
+
+    <div class="service-area-map__actions">
+      <button type="button" class="service-area-map__button" data-load-map>
+        Load Google Map
+      </button>
+      <a href={mapsUrl} class="service-area-map__link" target="_blank" rel="noopener">
+        Open in Google Maps
+      </a>
+    </div>
+  </div>
+
+  <div class="service-area-map__visual">
+    <div class="service-area-map__map" data-map-frame data-map-src={embedUrl}>
+      <div class="service-area-map__placeholder">
+        <span class="service-area-map__pin" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21s7-5.4 7-12a7 7 0 0 0-14 0c0 6.6 7 12 7 12Z" fill="currentColor"/>
+            <circle cx="12" cy="9" r="2.4" fill="rgba(255,255,255,0.95)"/>
+          </svg>
+        </span>
+        <strong>{primaryLocation}</strong>
+        <span>{serviceArea} service area</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('[data-service-area-map]').forEach(function (block) {
+    var button = block.querySelector('[data-load-map]');
+    var frameWrap = block.querySelector('[data-map-frame]');
+    if (!button || !frameWrap) return;
+
+    button.addEventListener('click', function () {
+      if (frameWrap.querySelector('iframe')) return;
+
+      var iframe = document.createElement('iframe');
+      iframe.src = frameWrap.dataset.mapSrc;
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.title = 'Google map of the local service area';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.minHeight = '320px';
+      iframe.style.border = '0';
+      iframe.style.display = 'block';
+      frameWrap.textContent = '';
+      frameWrap.appendChild(iframe);
+      button.textContent = 'Map Loaded';
+      button.disabled = true;
+    });
+  });
+</script>
+
+<style>
+  .service-area-map {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  @media (min-width: 900px) {
+    .service-area-map {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+    }
+  }
+
+  .service-area-map__copy,
+  .service-area-map__visual {
+    min-width: 0;
+    border-radius: 8px;
+    border: 1px solid rgba(125, 74, 32, 0.2);
+    background:
+      radial-gradient(circle at 20% 0%, rgba(230, 126, 34, 0.18), transparent 34%),
+      linear-gradient(145deg, #fff3e2, #ead5bc);
+    box-shadow: 0 18px 44px rgba(69, 42, 22, 0.16);
+  }
+
+  .service-area-map__copy {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .service-area-map__eyebrow {
+    margin: 0 0 8px;
+    font-size: var(--font-size-tiny);
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--orange);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .service-area-map h2 {
+    margin: 0 0 12px;
+    font-size: var(--font-size-section-heading);
+    line-height: var(--line-height-section);
+    color: var(--navy);
+    text-shadow: none;
+  }
+
+  .service-area-map__copy > p:not(.service-area-map__eyebrow) {
+    margin: 0;
+    color: #4b3a2c;
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+
+  .service-area-map__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .service-area-map__pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(125, 74, 32, 0.22);
+    color: var(--navy);
+    background: rgba(255, 255, 255, 0.38);
+    text-decoration: none;
+    font-size: var(--font-size-body-small);
+    font-weight: var(--font-weight-semi-bold);
+  }
+
+  .service-area-map__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .service-area-map__button,
+  .service-area-map__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: var(--font-size-nav-button);
+    font-weight: var(--font-weight-bold);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .service-area-map__button {
+    border: 2px solid var(--button-primary-border);
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    box-shadow: var(--button-primary-shadow);
+  }
+
+  .service-area-map__button:disabled {
+    cursor: default;
+    opacity: 0.75;
+  }
+
+  .service-area-map__link {
+    border: 1px solid rgba(125, 74, 32, 0.25);
+    color: var(--navy);
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .service-area-map__visual {
+    padding: 10px;
+  }
+
+  .service-area-map__map {
+    width: 100%;
+    min-height: 320px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 6px;
+    background:
+      linear-gradient(135deg, rgba(230, 126, 34, 0.16), rgba(255, 255, 255, 0.42)),
+      repeating-linear-gradient(90deg, rgba(125, 74, 32, 0.055) 0 1px, transparent 1px 40px),
+      repeating-linear-gradient(0deg, rgba(125, 74, 32, 0.055) 0 1px, transparent 1px 40px);
+  }
+
+  .service-area-map__map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    border: 0;
+    display: block;
+  }
+
+  .service-area-map__placeholder {
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    color: #4b3a2c;
+    padding: 24px;
+  }
+
+  .service-area-map__pin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    color: #ffffff;
+    background: var(--orange);
+    border: 2px solid rgba(255, 255, 255, 0.22);
+    font-weight: var(--font-weight-black);
+    font-size: var(--font-size-sub-heading);
+    box-shadow: 0 0 0 10px rgba(230, 126, 34, 0.16);
+  }
+
+  .service-area-map__pin svg {
+    display: block;
+  }
+
+  .service-area-map__placeholder strong {
+    color: var(--navy);
+    font-size: var(--font-size-sub-heading);
+    line-height: var(--line-height-section);
+  }
+
+  .service-area-map__placeholder span:last-child {
+    font-size: var(--font-size-body-small);
+  }
+
+  @media (max-width: 743px) {
+    .service-area-map__copy {
+      align-items: center;
+      text-align: center;
+      padding: 22px 18px;
+    }
+
+    .service-area-map__pills,
+    .service-area-map__actions {
+      justify-content: center;
+    }
+
+    .service-area-map__map,
+    .service-area-map__map iframe,
+    .service-area-map__placeholder {
+      min-height: 260px;
+    }
+  }
+</style>

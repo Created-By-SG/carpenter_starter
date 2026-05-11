@@ -1,0 +1,23 @@
+---
+interface Props {
+  service: any;
+  flip?: boolean;
+}
+const { service, flip = false } = Astro.props;
+---
+<section class={`section section-pad ${flip ? 'alt-bg' : ''}`}>
+  <div class="container">
+    <div class={`grid-2col ${flip ? 'zigzag-flip' : ''}`}>
+      <div class="col-demo reveal-up">
+        <img src={service.image} alt={service.alt} loading="lazy" />
+      </div>
+      <div class="col-copy reveal-up delay-1">
+        <h2>{service.shortTitle}</h2>
+        <span class="tagline">{service.tagline}</span>
+        <p>{service.body}</p>
+        {service.locations && <span class="locations">Service locations: {service.locations}</span>}
+        <button class="btn btn-primary" onclick="openModal()">{service.cta}</button>
+      </div>
+    </div>
+  </div>
+</section>

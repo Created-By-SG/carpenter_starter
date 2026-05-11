@@ -1,0 +1,185 @@
+---
+interface Review {
+  quote: string;
+  name: string;
+  suburb?: string;
+}
+
+interface Props {
+  reviews?: Review[];
+}
+
+const { reviews = [] } = Astro.props;
+const uid = `reviews-carousel-swipe-${Math.random().toString(36).slice(2, 9)}`;
+const trackId = `${uid}-track`;
+const starSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:inline-block;vertical-align:middle;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>`;
+---
+
+<div class="reviews-carousel-swipe" id={uid}>
+  <div class="reviews-carousel-swipe__arrows">
+    <button type="button" class="reviews-carousel-swipe__arrow reviews-carousel-swipe__prev" aria-label="Previous review">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button type="button" class="reviews-carousel-swipe__arrow reviews-carousel-swipe__next" aria-label="Next review">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <div class="reviews-carousel-swipe__viewport">
+    <div class="reviews-carousel-swipe__track" id={trackId}>
+      {reviews.map((review) => (
+        <article class="reviews-carousel-swipe__card">
+          <div class="reviews-carousel-swipe__stars" set:html={starSvg.repeat(5)} />
+          <p class="reviews-carousel-swipe__quote">"{review.quote}"</p>
+          <p class="reviews-carousel-swipe__author">{review.name}{review.suburb ? `, ${review.suburb}` : ''}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+  <p class="reviews-carousel-swipe__hint">Swipe left or right to see more</p>
+</div>
+
+<style>
+  .reviews-carousel-swipe {
+    width: 100%;
+    max-width: 100%;
+    overflow: clip;
+  }
+
+  .reviews-carousel-swipe__arrows {
+    display: none;
+  }
+
+  @media (min-width: 900px) {
+    .reviews-carousel-swipe__arrows {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .reviews-carousel-swipe__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--testimonial-arrow-border);
+    border-radius: 999px;
+    background: var(--testimonial-arrow-bg);
+    color: var(--testimonial-arrow-text);
+    cursor: pointer;
+    line-height: 1;
+    transition: background 0.2s;
+  }
+
+  .reviews-carousel-swipe__arrow:hover {
+    background: var(--testimonial-arrow-hover-bg);
+  }
+
+  .reviews-carousel-swipe__viewport {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .reviews-carousel-swipe__track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    align-items: stretch;
+    padding: 1px;
+  }
+
+  .reviews-carousel-swipe__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reviews-carousel-swipe__card {
+    flex: 0 0 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    background: var(--step-card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--step-card-shadow);
+    text-align: left;
+  }
+
+  @media (min-width: 900px) {
+    .reviews-carousel-swipe__card {
+      flex-basis: calc(33.333% - 11px);
+    }
+  }
+
+  .reviews-carousel-swipe__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--nav-star-color);
+    margin-bottom: 10px;
+  }
+
+  .reviews-carousel-swipe__quote {
+    color: var(--page-body-text);
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body);
+    margin: 0 0 12px;
+  }
+
+  .reviews-carousel-swipe__author {
+    color: var(--hero-highlight-text);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+  }
+
+  .reviews-carousel-swipe__hint {
+    margin: 10px 0 0;
+    color: var(--testimonial-hint-text);
+    font-size: var(--font-size-tiny);
+    letter-spacing: var(--letter-spacing-label);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 900px) {
+    .reviews-carousel-swipe__hint {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid, trackId }}>
+  (function () {
+    var root = document.getElementById(uid);
+    var track = document.getElementById(trackId);
+    if (!root || !track) return;
+
+    var prev = root.querySelector('.reviews-carousel-swipe__prev');
+    var next = root.querySelector('.reviews-carousel-swipe__next');
+    if (!prev || !next) return;
+
+    function cardWidth() {
+      var card = track.querySelector('.reviews-carousel-swipe__card');
+      if (!card) return 0;
+      return card.offsetWidth + 16;
+    }
+
+    prev.addEventListener('click', function () {
+      track.scrollBy({ left: -cardWidth(), behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', function () {
+      track.scrollBy({ left: cardWidth(), behavior: 'smooth' });
+    });
+  })();
+</script>

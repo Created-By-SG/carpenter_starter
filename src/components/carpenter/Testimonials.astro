@@ -1,0 +1,26 @@
+---
+interface Props { reviews: Array<{ quote: string; name: string; suburb: string }>; }
+const { reviews } = Astro.props;
+---
+<section class="section testimonials">
+  <div class="container">
+    <h2 class="section-title reveal-up">Client Testimonials</h2>
+    <p class="section-subtitle reveal-up">What Our Clients Say. Swipe to see more.</p>
+    <div class="testimonials-wrap">
+      <button class="testimonial-nav prev" onclick="scrollTestimonials(-1)" aria-label="Previous testimonial"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="testimonials-scroll reveal-up" id="testimonialsScroll">
+        <div class="testimonials-track">
+          {reviews.map((review) => (
+            <div class="testimonial-card">
+              <p class="testimonial-text">{review.quote}</p>
+              <div class="testimonial-author">{review.name}</div>
+              <div class="testimonial-location">{review.suburb}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button class="testimonial-nav next" onclick="scrollTestimonials(1)" aria-label="Next testimonial"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+    <div class="testimonials-dots">{reviews.map((_, index) => <span class={`dot ${index === 0 ? 'active' : ''}`}></span>)}</div>
+  </div>
+</section>

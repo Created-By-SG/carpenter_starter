@@ -1,0 +1,429 @@
+---
+interface Card {
+  title: string;
+  body: string;
+  icon?: string;
+}
+
+interface Props {
+  cards?: Card[];
+  heading?: string;
+}
+
+const { cards = [], heading } = Astro.props;
+const uid = `why-choose-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section class="why-choose-wave" id={uid}>
+  {heading && <h2 class="why-choose-wave__heading">{heading}</h2>}
+  <div class="why-choose-wave__grid">
+    <svg class="why-choose-wave__lines" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"></svg>
+    {cards.map((card, index) => (
+      <article class="why-choose-wave__card" data-index={index}>
+        {card.icon && <div class="why-choose-wave__icon" set:html={card.icon} />}
+        <h3 class="why-choose-wave__title">{card.title}</h3>
+        <p class="why-choose-wave__body">{card.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .why-choose-wave {
+    width: 100%;
+  }
+
+  .why-choose-wave__heading {
+    color: var(--section-heading-text);
+    font-size: var(--font-size-section-heading);
+    font-weight: var(--font-weight-black);
+    line-height: var(--line-height-section);
+    margin: 0 0 20px;
+    text-align: center;
+    text-shadow: var(--section-heading-shadow);
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .why-choose-wave.in-view .why-choose-wave__heading {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .why-choose-wave__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__grid {
+      gap: var(--s-gap, 16px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .why-choose-wave__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .why-choose-wave__lines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .why-choose-wave.in-view .why-choose-wave__lines {
+    opacity: 0.18;
+  }
+
+  .why-choose-wave__lines :global(line) {
+    stroke: var(--hero-highlight-text, #5eead4);
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+    opacity: 0;
+    animation: why-choose-line-draw 0.9s ease forwards;
+  }
+
+  .why-choose-wave__card {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--step-card-bg, rgba(255,255,255,0.06)) 82%, transparent);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: var(--step-card-shadow);
+    padding: 14px 12px;
+    opacity: 0.15;
+    transform: translateY(20px) scale(0.96);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__card {
+      padding: 22px;
+    }
+  }
+
+  .why-choose-wave__card::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 30%, transparent) 0%, transparent 70%);
+    filter: blur(24px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 1.4s ease;
+  }
+
+  .why-choose-wave__card.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .why-choose-wave__card.wave-active {
+    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 48%, transparent);
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 22%, transparent),
+      inset 0 0 10px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 12%, transparent),
+      var(--step-card-shadow);
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .why-choose-wave__card.wave-active::before {
+    opacity: 0.62;
+  }
+
+  .why-choose-wave__card.neighbor-hover {
+    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 32%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .why-choose-wave__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 8px;
+    border: 1px solid color-mix(in srgb, var(--hero-highlight-text, #5eead4) 24%, transparent);
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 12%, transparent);
+    color: var(--hero-highlight-text);
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+    }
+  }
+
+  .why-choose-wave__icon :global(svg) {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__icon :global(svg) {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .why-choose-wave__card.is-visible .why-choose-wave__icon {
+    animation: why-choose-icon-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .why-choose-wave__title {
+    color: var(--hero-highlight-text);
+    font-size: 0.78rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.25;
+    margin: 0 0 5px;
+    opacity: 0;
+    transform: translateY(8px);
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__title {
+      font-size: var(--font-size-card-title);
+      line-height: var(--line-height-section);
+      margin-bottom: 8px;
+    }
+  }
+
+  .why-choose-wave__card.is-visible .why-choose-wave__title {
+    animation: why-choose-title-slide 0.4s ease 0.1s forwards;
+  }
+
+  .why-choose-wave__body {
+    color: var(--step-body-text);
+    font-size: 0.68rem;
+    line-height: 1.45;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  @media (min-width: 744px) {
+    .why-choose-wave__body {
+      font-size: var(--font-size-body-small);
+      line-height: var(--line-height-body);
+    }
+  }
+
+  .why-choose-wave__card.is-visible .why-choose-wave__body {
+    animation: why-choose-body-fade 0.45s ease 0.2s forwards;
+  }
+
+  @keyframes why-choose-icon-pop {
+    to { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+
+  @keyframes why-choose-title-slide {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes why-choose-body-fade {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes why-choose-line-draw {
+    from { opacity: 0; stroke-dashoffset: 16; }
+    to { opacity: 0.25; stroke-dashoffset: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why-choose-wave__heading,
+    .why-choose-wave__card,
+    .why-choose-wave__icon,
+    .why-choose-wave__title,
+    .why-choose-wave__body {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .why-choose-wave__lines {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var root = document.getElementById(uid);
+    if (!root) return;
+
+    var grid = root.querySelector('.why-choose-wave__grid');
+    var linesSvg = root.querySelector('.why-choose-wave__lines');
+    var cards = Array.prototype.slice.call(root.querySelectorAll('.why-choose-wave__card'));
+    var hasTriggered = false;
+    var waveTimeout = null;
+    var currentWaveIndex = 0;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getCols() {
+      if (!grid) return 1;
+      var style = window.getComputedStyle(grid);
+      var cols = style.gridTemplateColumns.trim().split(' ').filter(Boolean);
+      return cols.length || 1;
+    }
+
+    function getStaggerDelay(index, cols) {
+      var row = Math.floor(index / cols);
+      var col = index % cols;
+      return (row + col) * 100;
+    }
+
+    function revealBlock() {
+      if (hasTriggered) return;
+      hasTriggered = true;
+      root.classList.add('in-view');
+
+      if (reducedMotion) {
+        cards.forEach(function (card) {
+          card.classList.add('is-visible');
+        });
+        return;
+      }
+
+      var cols = getCols();
+      cards.forEach(function (card, index) {
+        setTimeout(function () {
+          card.classList.add('is-visible');
+        }, getStaggerDelay(index, cols));
+      });
+
+      setTimeout(drawConnections, 120);
+      setTimeout(startAmbientWave, 1600);
+    }
+
+    function startAmbientWave() {
+      if (!cards.length || reducedMotion) return;
+
+      cards.forEach(function (card) {
+        card.classList.remove('wave-active');
+      });
+      cards[currentWaveIndex].classList.add('wave-active');
+      currentWaveIndex = (currentWaveIndex + 1) % cards.length;
+      waveTimeout = setTimeout(startAmbientWave, 1600);
+    }
+
+    function getCardPosition(card) {
+      var cols = getCols();
+      var index = Number(card.dataset.index || 0);
+      return { row: Math.floor(index / cols), col: index % cols, cols: cols };
+    }
+
+    function getNeighbors(card) {
+      var pos = getCardPosition(card);
+      return cards.filter(function (other) {
+        if (other === card) return false;
+        var otherPos = getCardPosition(other);
+        return Math.abs(pos.row - otherPos.row) + Math.abs(pos.col - otherPos.col) === 1;
+      });
+    }
+
+    function drawConnections() {
+      if (!grid || !linesSvg || reducedMotion) return;
+
+      var gridRect = grid.getBoundingClientRect();
+      var cols = getCols();
+      linesSvg.setAttribute('viewBox', '0 0 ' + gridRect.width + ' ' + gridRect.height);
+      linesSvg.innerHTML = '';
+
+      cards.forEach(function (card, index) {
+        var cardRect = card.getBoundingClientRect();
+        var cx = cardRect.left - gridRect.left + cardRect.width / 2;
+        var cy = cardRect.top - gridRect.top + cardRect.height / 2;
+        var pos = getCardPosition(card);
+
+        if (pos.col < pos.cols - 1 && cards[index + 1]) {
+          appendLine(cx, cy, cards[index + 1], gridRect, (pos.row + pos.col) * 0.1 + 0.4);
+        }
+
+        if (cards[index + cols]) {
+          appendLine(cx, cy, cards[index + cols], gridRect, (pos.row + pos.col) * 0.1 + 0.6);
+        }
+      });
+    }
+
+    function appendLine(x1, y1, targetCard, gridRect, delay) {
+      var targetRect = targetCard.getBoundingClientRect();
+      var x2 = targetRect.left - gridRect.left + targetRect.width / 2;
+      var y2 = targetRect.top - gridRect.top + targetRect.height / 2;
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2);
+      line.setAttribute('y2', y2);
+      line.style.animationDelay = delay + 's';
+      linesSvg.appendChild(line);
+    }
+
+    cards.forEach(function (card) {
+      card.addEventListener('mouseenter', function () {
+        getNeighbors(card).forEach(function (neighbor) {
+          neighbor.classList.add('neighbor-hover');
+        });
+      });
+
+      card.addEventListener('mouseleave', function () {
+        getNeighbors(card).forEach(function (neighbor) {
+          neighbor.classList.remove('neighbor-hover');
+        });
+      });
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          revealBlock();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(root);
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (!hasTriggered) return;
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(drawConnections, 150);
+    });
+
+    window.addEventListener('pagehide', function () {
+      if (waveTimeout) window.clearTimeout(waveTimeout);
+    });
+  })();
+</script>

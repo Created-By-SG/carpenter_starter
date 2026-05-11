@@ -1,0 +1,431 @@
+﻿{
+  "kitchen-renovations": {
+    "pageMeta": {
+      "h1": "Kitchen Renovations Gold Coast",
+      "metaTitle": "Kitchen Renovations | Premium Carpenter | Coomera, Helensvale & Hope Island",
+      "metaDesc": "Premium Carpenter specialises in kitchen renovations across the Gold Coast. Custom cabinetry, structural alterations, tiling & finishing. Licensed & insured. Free quote."
+    },
+    "shortTitle": "Kitchen Renovations",
+    "shortDescription": "Complete kitchen makeovers, cabinetry, structural work, tiling, and finishing.",
+    "introBlend": {
+      "heading": "A Kitchen That Works as Hard as You Do",
+      "body": "The kitchen is the engine room of your home, but standard layouts, tired cabinetry, and poor flow can suck the joy out of cooking and entertaining. A professional kitchen renovation transforms that space into one that handles busy family life, evening gatherings, and the Gold Coast humidity without missing a beat. Premium Carpenter delivers complete kitchen makeovers across the Gold Coast. We handle everything structural, knocking out walls, reconfiguring layouts, levelling floors, and bring in reliable plumbers and electricians so you get one coordinated team. The carpentry is where we shine: custom cabinets built to exact dimensions, soft close drawers, solid timber or engineered stone benchtops, splashback framing, and all the finishing details that turn a bland kitchen into the heart of your home. We regularly quote kitchen carpentry work in Coomera, Helensvale, Hope Island and right across the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "coomera",
+      "helensvale",
+      "hope-island",
+      "upper-coomera",
+      "oxenford"
+    ],
+    "cta": "Get Your Kitchen Quote",
+    "image": "/images/bathroom.webp",
+    "alt": "Premium kitchen renovation carpentry",
+    "tagline": "A Kitchen That Works as Hard as You Do",
+    "body": "The kitchen is the engine room of your home, but standard layouts, tired cabinetry, and poor flow can suck the joy out of cooking and entertaining. A professional kitchen renovation transforms that space into one that handles busy family life, evening gatherings, and the Gold Coast humidity without missing a beat. Premium Carpenter delivers complete kitchen makeovers across the Gold Coast. We handle everything structural, knocking out walls, reconfiguring layouts, levelling floors, and bring in reliable plumbers and electricians so you get one coordinated team. The carpentry is where we shine: custom cabinets built to exact dimensions, soft close drawers, solid timber or engineered stone benchtops, splashback framing, and all the finishing details that turn a bland kitchen into the heart of your home. We regularly quote kitchen carpentry work in Coomera, Helensvale, Hope Island and right across the Gold Coast.",
+    "locations": "Coomera, Helensvale, Hope Island, Upper Coomera, Oxenford, and surrounds.",
+    "teamTrust": {
+      "heading": "Your Local Kitchen Renovation Carpenter",
+      "body": "Nobody wants a kitchen that drags on for months or finishes with gaps you can spot from the hallway. Premium Carpenter has delivered kitchen transformations across Coomera, Helensvale, Hope Island and beyond for over 15 years. We work on island kitchens, galley styles, open plan living areas, and compact apartment spaces. Every project starts with a clear scope, a transparent quote, and a genuine workmanship guarantee."
+    },
+    "serviceExpertise": {
+      "heading": "What Makes a Premium Kitchen Renovation",
+      "body": "We handle the entire structural and finishing side of your kitchen upgrade. Our carpentry is the backbone of your new space.",
+      "items": [
+        {
+          "label": "Custom Cabinetry",
+          "detail": "Designed and built to your exact kitchen dimensions, no filler panels and no wasted space. soft close hardware, solid timber or plywood carcasses."
+        },
+        {
+          "label": "Structural Modifications",
+          "detail": "Walls removed or relocated, load bearing beams installed, ceiling bulkheads built to conceal rangehood ducting."
+        },
+        {
+          "label": "Benchtops and Island Frames",
+          "detail": "Sturdy framing for engineered stone, laminate, or timber tops. Waterproof substrate around sinks and dishwashers."
+        },
+        {
+          "label": "Splashbacks and Finishing",
+          "detail": "Window and door architraves, skirting, tiling substrate, and final trim that makes the kitchen feel finished."
+        },
+        {
+          "label": "Appliance Integration",
+          "detail": "Precision cutouts for ovens, microwaves, and integrated fridges. Drawer and door fronts matched across the entire run."
+        }
+      ]
+    },
+    "localRelevance": {
+      "heading": "Why Kitchen Carpentry in Our Climate Demands More",
+      "body": "Kitchens on the Gold Coast face humidity swings, heavy use, and salt air that cheap materials cannot handle.",
+      "items": [
+        {
+          "label": "Humidity Resistant Materials",
+          "detail": "Moisture resistant MDF and plywood used in cabinet construction. Solid timber properly sealed against swelling."
+        },
+        {
+          "label": "Expansion Gaps",
+          "detail": "Benchtops and joinery are installed with the correct clearances so they do not bind when humidity rises."
+        },
+        {
+          "label": "Ventilation and Mould Prevention",
+          "detail": "Rangehood ducting sealed and vented outside. Cabinets designed to stay dry even in steam rich zones."
+        },
+        {
+          "label": "Heavy Duty Hardware",
+          "detail": "Drawer runners and hinges rated for constant use, resisting corrosion in coastal air."
+        }
+      ]
+    },
+    "ourProcess": {
+      "heading": "How We Take Your Kitchen From Dated to Dream",
+      "steps": [
+        {
+          "num": "1",
+          "title": "In Home Consultation",
+          "detail": "Ideas, measurements, structural possibilities, and a detailed written quote."
+        },
+        {
+          "num": "2",
+          "title": "Design and Material Selection",
+          "detail": "Cabinetry profile, benchtop, handles, and colour choices mapped out."
+        },
+        {
+          "num": "3",
+          "title": "Demolition and Structural Work",
+          "detail": "Old kitchen removed. Floor levelled. Walls modified. Trades coordinated."
+        },
+        {
+          "num": "4",
+          "title": "Cabinetry and Benchtop Installation",
+          "detail": "Custom cabinets fitted, islands anchored, benchtops templated and installed."
+        },
+        {
+          "num": "5",
+          "title": "Finishing and Inspection",
+          "detail": "Kickboards, trim, appliance fit off. Final walkthrough with you. Guarantee signed off."
+        }
+      ]
+    },
+    "closingCta": {
+      "heading": "A Kitchen Built Around Your Life, Not a Catalogue",
+      "body": "Premium Carpenter has delivered kitchen renovations across the Gold Coast for over 15 years. We hold full licensing and insurance, and we treat your home like our own. Ready for a kitchen that changes the way you live? Call for a free consultation and quote. We serve the entire Gold Coast, regularly working in Coomera, Helensvale, Hope Island, and all surrounding suburbs."
+    }
+  },
+  "bathroom-renovations": {
+    "pageMeta": {
+      "h1": "Bathroom Renovations Gold Coast",
+      "metaTitle": "Bathroom Renovations | Premium Carpenter | Custom Joinery & Waterproofing",
+      "metaDesc": "Premium bathroom renovations on the Gold Coast. Carpentry, waterproofing, custom vanities & full strip outs. Licensed & insured. Free quote."
+    },
+    "shortTitle": "Bathroom Renovations",
+    "shortDescription": "Full bathroom transformations, waterproofing, custom vanities, and structural carpentry.",
+    "introBlend": {
+      "heading": "Turn a Tired Bathroom Into a Daily Retreat",
+      "body": "A bathroom should be a calm space that handles steam, splashes, and the morning rush without looking worse for wear. Old tiles, failing waterproofing, and cramped layouts create bigger problems the longer you wait. A professional bathroom renovation from Premium Carpenter strips it right back and builds it properly. We handle the structural carpentry, moving or removing walls, building hob and shower frames, installing custom vanities, and prepping for tiles. With reliable plumbers and electricians coordinated in, you get one seamless upgrade without the missing tradie headaches. We regularly quote bathroom carpentry work in Helensvale, Upper Coomera, Hope Island and across the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "upper-coomera",
+      "coomera",
+      "helensvale",
+      "hope-island",
+      "pimpama"
+    ],
+    "cta": "Get Your Bathroom Quote",
+    "image": "/images/bathroom.webp",
+    "alt": "Premium bathroom renovation carpentry",
+    "tagline": "Turn a Tired Bathroom Into a Daily Retreat",
+    "body": "A bathroom should be a calm space that handles steam, splashes, and the morning rush without looking worse for wear. Old tiles, failing waterproofing, and cramped layouts create bigger problems the longer you wait. A professional bathroom renovation from Premium Carpenter strips it right back and builds it properly. We handle the structural carpentry, moving or removing walls, building hob and shower frames, installing custom vanities, and prepping for tiles. With reliable plumbers and electricians coordinated in, you get one seamless upgrade without the missing tradie headaches. We regularly quote bathroom carpentry work in Helensvale, Upper Coomera, Hope Island and across the Gold Coast.",
+    "locations": "Upper Coomera, Coomera, Helensvale, Hope Island, Pimpama, and surrounds.",
+    "teamTrust": {
+      "heading": "Your Local Bathroom Renovation Team",
+      "body": "A bathroom renovation is one of the most disruptive jobs in a home. You need a team that turns up, keeps the dust contained, and gets it right the first time, particularly with waterproofing. Premium Carpenter has delivered hundreds of bathroom upgrades across the Gold Coast. We work on everything from small ensuites to full family bathrooms and luxury master suites."
+    },
+    "serviceExpertise": {
+      "heading": "What Makes a Premium Bathroom Renovation",
+      "body": "",
+      "items": [
+        {
+          "label": "Strip Outs and Structural Work",
+          "detail": "Safe removal of tiles, shower screens, vanities, and old wall linings. Floor joists and wall frames checked and repaired."
+        },
+        {
+          "label": "Custom Vanities and Joinery",
+          "detail": "Made to measure vanities that use every centimetre of your space. Solid construction with quality hardware."
+        },
+        {
+          "label": "Waterproofing Ready Substrates",
+          "detail": "Villaboard and compressed cement sheet installation, falls built into shower bases, hob frames constructed."
+        },
+        {
+          "label": "Niche and Bulkhead Framing",
+          "detail": "Recessed shampoo niches, shower bulkheads, and ceiling drops framed and sheathed ready for tiles."
+        },
+        {
+          "label": "Finishing Trim",
+          "detail": "Architraves, skirting, door adjustments, and window reveal finishing that makes the bathroom feel like new."
+        }
+      ]
+    },
+    "localRelevance": {
+      "heading": "Why Bathroom Carpentry in the Subtropics Is Different",
+      "body": "",
+      "items": [
+        {
+          "label": "Moisture Management",
+          "detail": "Materials and construction methods chosen for high humidity. We use marine ply where needed and ensure all timber is sealed."
+        },
+        {
+          "label": "Mould Prevention",
+          "detail": "Waterproof membrane requirements exceed the Australian Standard in our builds. Proper ventilation built into the design."
+        },
+        {
+          "label": "Coastal Corrosion",
+          "detail": "Stainless steel hardware and screws used throughout for salt air tolerance."
+        }
+      ]
+    },
+    "ourProcess": {
+      "heading": "How We Transform Your Bathroom",
+      "steps": [
+        {
+          "num": "1",
+          "title": "Measure, Assess, Quote",
+          "detail": "We inspect the space, check subfloor condition, discuss your wish list, and deliver a fixed price quote."
+        },
+        {
+          "num": "2",
+          "title": "Design and Selections",
+          "detail": "Vanity style, tapware positions, niche placement, tile and colour guidance."
+        },
+        {
+          "num": "3",
+          "title": "Strip Out and Rough In",
+          "detail": "Old bathroom removed. Subfloor and wall frame repairs. Plumbing and electrical rough in."
+        },
+        {
+          "num": "4",
+          "title": "Carpentry and Sheeting",
+          "detail": "Vanity and cabinetry installed, wall linings and trim done, waterproofing completed."
+        },
+        {
+          "num": "5",
+          "title": "Finishing and Handover",
+          "detail": "Waterproofing inspected, fixtures mounted, final clean. Your new bathroom is ready to use."
+        }
+      ]
+    },
+    "closingCta": {
+      "heading": "A Bathroom Built to Last Through Every Steam and Splash",
+      "body": "Premium Carpenter has been trusted with bathroom renovations across Coomera, Upper Coomera, Helensvale, and Hope Island for over 15 years. We treat waterproofing and structural integrity as non negotiable. Ready for a bathroom that feels like a daily escape? Call for a free consultation and written quote. We cover the entire Gold Coast."
+    }
+  },
+  "timber-flooring": {
+    "pageMeta": {
+      "h1": "Timber Flooring Gold Coast",
+      "metaTitle": "Timber Flooring | Premium Carpenter | Installation, Sanding & Finishing",
+      "metaDesc": "Premium timber flooring installation and restoration across the Gold Coast. Solid timber, engineered boards, sanding, and coating. Free quote."
+    },
+    "shortTitle": "Timber Flooring",
+    "shortDescription": "Solid and engineered timber floor installation, sanding, and finishing.",
+    "introBlend": {
+      "heading": "Floors That Feel Right Underfoot and Look Beautiful for Years",
+      "body": "The floor anchors every room. A beautifully laid timber floor adds warmth, character, and a sense of permanence, while a poorly installed one creaks, gaps, and cups with every humidity shift. Premium Carpenter specialises in timber flooring installation and restoration across the Gold Coast. We handle solid hardwood, engineered boards, parquetry, and bamboo. Every floor starts with a properly prepared substrate, whether it is a new plywood base over joists or a moisture sealed concrete slab. We then install, sand, and coat to a finish that protects against our coastal climate and daily wear. We regularly quote flooring jobs in Helensvale, Hope Island, Coomera and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "helensvale",
+      "hope-island",
+      "coomera",
+      "oxenford",
+      "pimpama"
+    ],
+    "cta": "Get Your Flooring Quote",
+    "image": "/images/flooring1.webp",
+    "alt": "Timber flooring installation and restoration",
+    "tagline": "Floors That Feel Right Underfoot and Look Beautiful for Years",
+    "body": "The floor anchors every room. A beautifully laid timber floor adds warmth, character, and a sense of permanence, while a poorly installed one creaks, gaps, and cups with every humidity shift. Premium Carpenter specialises in timber flooring installation and restoration across the Gold Coast. We handle solid hardwood, engineered boards, parquetry, and bamboo. Every floor starts with a properly prepared substrate, whether it is a new plywood base over joists or a moisture sealed concrete slab. We then install, sand, and coat to a finish that protects against our coastal climate and daily wear. We regularly quote flooring jobs in Helensvale, Hope Island, Coomera and throughout the Gold Coast.",
+    "locations": "Helensvale, Hope Island, Coomera, Oxenford, Pimpama, and surrounds."
+  },
+  "full-home-renovations": {
+    "pageMeta": {
+      "h1": "Full Home Renovations Gold Coast",
+      "metaTitle": "Full Home Renovations | Premium Carpenter | Concept to Completion",
+      "metaDesc": "Complete home renovation carpentry across the Gold Coast. Extensions, open plan living, multi room makeovers. Licensed & insured. Free quote."
+    },
+    "shortTitle": "Full Home Renovations",
+    "shortDescription": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers.",
+    "introBlend": {
+      "heading": "Transform Your Entire Home With One Trusted Team",
+      "body": "Living through a piecemeal renovation is draining. Different tradies, mismatched finishes, and endless delays. A full home renovation puts the whole project under one roof, with a coordinated programme that respects your time and budget. Premium Carpenter delivers comprehensive renovation carpentry across the Gold Coast. We handle internal strip outs, structural alterations, new room additions, staircases, flooring, joinery, and the all important lock up stage where your house becomes a functioning home again. Whether it is a tired 1980s brick home in Helensvale or a canal front residence in Hope Island, we bring the same precision and respect for your property. We regularly quote full home renovation carpentry in Coomera, Helensvale, Hope Island and right across the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "helensvale",
+      "hope-island",
+      "coomera",
+      "upper-coomera",
+      "oxenford"
+    ],
+    "cta": "Get Your Renovation Quote",
+    "image": "/images/full_home_renovations.webp",
+    "alt": "Full home renovation carpentry",
+    "tagline": "Transform Your Entire Home With One Trusted Team",
+    "body": "Living through a piecemeal renovation is draining. Different tradies, mismatched finishes, and endless delays. A full home renovation puts the whole project under one roof, with a coordinated programme that respects your time and budget. Premium Carpenter delivers comprehensive renovation carpentry across the Gold Coast. We handle internal strip outs, structural alterations, new room additions, staircases, flooring, joinery, and the all important lock up stage where your house becomes a functioning home again. Whether it is a tired 1980s brick home in Helensvale or a canal front residence in Hope Island, we bring the same precision and respect for your property. We regularly quote full home renovation carpentry in Coomera, Helensvale, Hope Island and right across the Gold Coast.",
+    "locations": "Helensvale, Hope Island, Coomera, Upper Coomera, Oxenford, and surrounds."
+  },
+  "custom-cabinetry": {
+    "pageMeta": {
+      "h1": "Custom Cabinetry Gold Coast",
+      "metaTitle": "Custom Cabinetry | Premium Carpenter | Made to Measure Joinery",
+      "metaDesc": "Bespoke custom cabinetry across the Gold Coast. Kitchens, robes, vanities, entertainment units. Built local. Free quote."
+    },
+    "shortTitle": "Custom Cabinetry",
+    "shortDescription": "Bespoke cabinetry made to fit your home and lifestyle kitchens, robes, and living room joinery.",
+    "introBlend": {
+      "heading": "Cabinetry That Fits Your Space Like It Grew There",
+      "body": "Off the shelf cabinetry rarely maximises an awkward corner, fits under a staircase, or matches the adjacent timberwork in your home. Custom cabinetry is the answer: built to your exact dimensions, designed to your storage needs, and constructed from materials that last decades. Premium Carpenter delivers bespoke cabinetry across the Gold Coast. We specialise in kitchens, bathroom vanities, built in wardrobes, home office units, entertainment walls, laundry fit outs, and garage storage. Every piece is cut, assembled, and finished locally, then installed with care. We regularly quote custom cabinetry in Helensvale, Hope Island, Coomera and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "helensvale",
+      "hope-island",
+      "coomera",
+      "upper-coomera",
+      "pimpama"
+    ],
+    "cta": "Get Your Cabinetry Quote",
+    "image": "/images/custom_cabinet.webp",
+    "alt": "Custom cabinetry and storage joinery",
+    "tagline": "Cabinetry That Fits Your Space Like It Grew There",
+    "body": "Off the shelf cabinetry rarely maximises an awkward corner, fits under a staircase, or matches the adjacent timberwork in your home. Custom cabinetry is the answer: built to your exact dimensions, designed to your storage needs, and constructed from materials that last decades. Premium Carpenter delivers bespoke cabinetry across the Gold Coast. We specialise in kitchens, bathroom vanities, built in wardrobes, home office units, entertainment walls, laundry fit outs, and garage storage. Every piece is cut, assembled, and finished locally, then installed with care. We regularly quote custom cabinetry in Helensvale, Hope Island, Coomera and throughout the Gold Coast.",
+    "locations": "Helensvale, Hope Island, Coomera, Upper Coomera, Pimpama, and surrounds."
+  },
+  "custom-joinery": {
+    "pageMeta": {
+      "h1": "Custom Joinery Gold Coast",
+      "metaTitle": "Custom Joinery | Premium Carpenter | Fine Timber Joinery & Detailing",
+      "metaDesc": "Expert custom joinery across the Gold Coast. Wall panelling, staircases, bespoke timber features, and detailed finishing. Free quote."
+    },
+    "shortTitle": "Custom Joinery",
+    "shortDescription": "Fine timber joinery, wall panelling, staircases, and detailed finishing work.",
+    "introBlend": {
+      "heading": "The Detail That Turns a House Into Your Home",
+      "body": "Custom joinery is the timberwork you notice when you walk into a room: a handcrafted staircase, shadow line wall panelling, a beautifully framed doorway, or a window seat that catches the afternoon light. These are not off the shelf items; they require a carpenter who understands proportion, timber movement, and fine finishing. Premium Carpenter provides bespoke joinery across the Gold Coast, designing and building pieces that add character and value to your home. We regularly quote custom joinery work in Hope Island, Helensvale, Coomera, and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "hope-island",
+      "helensvale",
+      "coomera",
+      "oxenford",
+      "upper-coomera"
+    ],
+    "cta": "Get Your Joinery Quote",
+    "image": "/images/custom_cabinet.webp",
+    "alt": "Custom timber joinery and detailing",
+    "tagline": "The Detail That Turns a House Into Your Home",
+    "body": "Custom joinery is the timberwork you notice when you walk into a room: a handcrafted staircase, shadow line wall panelling, a beautifully framed doorway, or a window seat that catches the afternoon light. These are not off the shelf items; they require a carpenter who understands proportion, timber movement, and fine finishing. Premium Carpenter provides bespoke joinery across the Gold Coast, designing and building pieces that add character and value to your home. We regularly quote custom joinery work in Hope Island, Helensvale, Coomera, and throughout the Gold Coast.",
+    "locations": "Hope Island, Helensvale, Coomera, Oxenford, Upper Coomera, and surrounds."
+  },
+  "timber-decking": {
+    "pageMeta": {
+      "h1": "Timber Decking Gold Coast",
+      "metaTitle": "Timber Decking | Premium Carpenter | Decks, Boardwalks & Alfresco",
+      "metaDesc": "Premium timber decking construction and restoration across the Gold Coast. Hardwood decks, boardwalks, and pool surrounds. Free quote."
+    },
+    "shortTitle": "Timber Decking",
+    "shortDescription": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle.",
+    "introBlend": {
+      "heading": "A Deck That Connects Your Home to the Outdoors",
+      "body": "A well built timber deck extends your living space into the garden, the view, or the waterfront. It is where you entertain, relax, and watch the kids play. Premium Carpenter specialises in timber decking across the Gold Coast. We build new decks, replace old ones, and restore weathered surfaces. From simple ground level platforms to elevated decks that capture canal breezes, every board is laid with care and finished to handle bare feet, rain, and sun. We regularly quote decking work in Helensvale, Hope Island, Coomera, and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "helensvale",
+      "hope-island",
+      "coomera",
+      "upper-coomera",
+      "oxenford"
+    ],
+    "cta": "Get Your Deck Quote",
+    "image": "/images/Timber_Decking.webp",
+    "alt": "Timber decking and outdoor living",
+    "tagline": "A Deck That Connects Your Home to the Outdoors",
+    "body": "A well built timber deck extends your living space into the garden, the view, or the waterfront. It is where you entertain, relax, and watch the kids play. Premium Carpenter specialises in timber decking across the Gold Coast. We build new decks, replace old ones, and restore weathered surfaces. From simple ground level platforms to elevated decks that capture canal breezes, every board is laid with care and finished to handle bare feet, rain, and sun. We regularly quote decking work in Helensvale, Hope Island, Coomera, and throughout the Gold Coast.",
+    "locations": "Helensvale, Hope Island, Coomera, Upper Coomera, Oxenford, and surrounds."
+  },
+  "pergolas-outdoor-living": {
+    "pageMeta": {
+      "h1": "Pergolas & Outdoor Living Gold Coast",
+      "metaTitle": "Pergolas & Outdoor Living | Premium Carpenter | Alfresco Carpentry",
+      "metaDesc": "Custom pergolas, insulated patios, and outdoor living carpentry across the Gold Coast. Built for entertaining. Free quote."
+    },
+    "shortTitle": "Pergolas Outdoor Living",
+    "shortDescription": "Custom pergolas, insulated patios, and alfresco structures built for year round living.",
+    "introBlend": {
+      "heading": "An Outdoor Room You Use Every Day",
+      "body": "A pergola or outdoor living area turns your backyard into another room of the house. It is shade in summer, shelter during a passing storm, and the backdrop for weekend barbecues. Premium Carpenter designs and builds custom pergolas and outdoor living structures across the Gold Coast. Whether it is a freestanding timber pergola, an insulated patio attached to the house, or a full outdoor kitchen pavilion, we handle the full project: footings, framing, roofing, and finishing. We regularly quote pergola carpentry in Coomera, Upper Coomera, Helensvale, and right across the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "coomera",
+      "upper-coomera",
+      "helensvale",
+      "oxenford",
+      "pimpama"
+    ],
+    "cta": "Get Your Pergola Quote",
+    "image": "/images/Timber_Decking.webp",
+    "alt": "Pergolas and outdoor living carpentry",
+    "tagline": "An Outdoor Room You Use Every Day",
+    "body": "A pergola or outdoor living area turns your backyard into another room of the house. It is shade in summer, shelter during a passing storm, and the backdrop for weekend barbecues. Premium Carpenter designs and builds custom pergolas and outdoor living structures across the Gold Coast. Whether it is a freestanding timber pergola, an insulated patio attached to the house, or a full outdoor kitchen pavilion, we handle the full project: footings, framing, roofing, and finishing. We regularly quote pergola carpentry in Coomera, Upper Coomera, Helensvale, and right across the Gold Coast.",
+    "locations": "Coomera, Upper Coomera, Helensvale, Oxenford, Pimpama, and surrounds."
+  },
+  "carpentry-repairs-maintenance": {
+    "pageMeta": {
+      "h1": "Carpentry Repairs & Maintenance Gold Coast",
+      "metaTitle": "Carpentry Repairs & Maintenance | Premium Carpenter | Timber Fixes",
+      "metaDesc": "Expert carpentry repairs and maintenance across the Gold Coast. Rot repair, weatherboard replacement, door adjustments, and general fixes. Free quote."
+    },
+    "shortTitle": "Carpentry Repairs Maintenance",
+    "shortDescription": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance.",
+    "introBlend": {
+      "heading": "The Small Fixes That Stop Big Problems",
+      "body": "A sticking door, a rotten fascia board, a squeaky staircase, or a weatherboard that has let moisture in these small issues become expensive damage when ignored. Premium Carpenter provides prompt carpentry repair and maintenance services across the Gold Coast. We handle everything from a single door adjustment to full weatherboard replacement on a Queenslander. No job is too small, and we treat every repair with the same care as a full renovation. We regularly quote repair carpentry in Helensvale, Coomera, Hope Island, and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "helensvale",
+      "coomera",
+      "hope-island",
+      "upper-coomera",
+      "oxenford"
+    ],
+    "cta": "Get a Repair Quote",
+    "image": "/images/working.webp",
+    "alt": "Carpentry repairs and maintenance",
+    "tagline": "The Small Fixes That Stop Big Problems",
+    "body": "A sticking door, a rotten fascia board, a squeaky staircase, or a weatherboard that has let moisture in these small issues become expensive damage when ignored. Premium Carpenter provides prompt carpentry repair and maintenance services across the Gold Coast. We handle everything from a single door adjustment to full weatherboard replacement on a Queenslander. No job is too small, and we treat every repair with the same care as a full renovation. We regularly quote repair carpentry in Helensvale, Coomera, Hope Island, and throughout the Gold Coast.",
+    "locations": "Helensvale, Coomera, Hope Island, Upper Coomera, Oxenford, and surrounds."
+  },
+  "heritage-restorations": {
+    "pageMeta": {
+      "h1": "Heritage Home Restorations Gold Coast",
+      "metaTitle": "Heritage Restorations | Premium Carpenter | Character Home Carpentry",
+      "metaDesc": "Heritage carpentry restoration on the Gold Coast. Queenslander renovations, period joinery, and character home upgrades. Free quote."
+    },
+    "shortTitle": "Heritage Restorations",
+    "shortDescription": "Respect the character while upgrading function, comfort, and finish.",
+    "introBlend": {
+      "heading": "Respect the Character. Upgrade the Functionality.",
+      "body": "Older homes have a soul that modern builds cannot replicate, but they also hide decades of wear, non original alterations, and materials that have reached the end of their life. Premium Carpenter specialises in heritage home restoration across the Gold Coast. We work on Queenslanders, post war cottages, and mid century homes, restoring original features while sensitively upgrading for modern living. We match existing profiles, source reclaimed timber where needed, and ensure every new piece of joinery sits comfortably alongside the old. We regularly quote heritage restoration carpentry in Beenleigh, Coomera, Helensvale, and throughout the Gold Coast."
+    },
+    "relatedSuburbs": [
+      "beenleigh",
+      "coomera",
+      "helensvale",
+      "upper-coomera",
+      "oxenford"
+    ],
+    "cta": "Get a Heritage Restoration Quote",
+    "image": "/images/flooring1.webp",
+    "alt": "Heritage home restoration carpentry",
+    "tagline": "Respect the Character. Upgrade the Functionality.",
+    "body": "Older homes have a soul that modern builds cannot replicate, but they also hide decades of wear, non original alterations, and materials that have reached the end of their life. Premium Carpenter specialises in heritage home restoration across the Gold Coast. We work on Queenslanders, post war cottages, and mid century homes, restoring original features while sensitively upgrading for modern living. We match existing profiles, source reclaimed timber where needed, and ensure every new piece of joinery sits comfortably alongside the old. We regularly quote heritage restoration carpentry in Beenleigh, Coomera, Helensvale, and throughout the Gold Coast.",
+    "locations": "Beenleigh, Coomera, Helensvale, Upper Coomera, Oxenford, and surrounds."
+  }
+}
+

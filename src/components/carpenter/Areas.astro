@@ -1,0 +1,17 @@
+---
+interface Props { suburbs: Array<[string, any]>; heading?: string; body?: string; }
+const { suburbs, heading = 'Carpentry & Renovation Services Across Sanctuary Cove And Surrounds', body } = Astro.props;
+---
+<section class="section areas" id="areas">
+  <div class="container">
+    <div class="areas-content reveal-up">
+      <h2 class="section-title">{heading}</h2>
+      <p>{body || 'We proudly serve homeowners across the Gold Coast. Our team understands local homes, coastal conditions, and what it takes to deliver projects that blend luxury and functionality.'}</p>
+      <div class="areas-list">
+        {suburbs.map(([slug, suburb]) => (
+          <a class="area-item" href={`/suburbs/${slug}/`}><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>{suburb.pageMeta.title.replace('Carpenters ', '')}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,247 @@
+---
+interface Props {
+  beforeSrc?: string;
+  afterSrc?: string;
+  beforeAlt?: string;
+  afterAlt?: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+  startPercent?: number;
+  accentColor?: string;
+  class?: string;
+}
+
+const {
+  beforeSrc,
+  afterSrc,
+  beforeAlt = 'Before',
+  afterAlt  = 'After',
+  beforeLabel = 'Before',
+  afterLabel  = 'After',
+  startPercent = 50,
+  accentColor  = '#ff6b35',
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={['bba-wrap', className]}
+  style={`--bba-accent: ${accentColor}; --bba-split: ${startPercent}%`}
+  data-start={startPercent}
+  role="slider"
+  tabindex="0"
+  aria-label={`Before and after comparison: ${beforeAlt} and ${afterAlt}`}
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-valuenow={startPercent}
+>
+  <div class="bba-after">
+    {afterSrc
+      ? <img src={afterSrc} alt={afterAlt} draggable="false" />
+      : <div class="bba-placeholder bba-placeholder-after"><slot name="after" /></div>
+    }
+    <span class="bba-label bba-label-after" aria-hidden="true">{afterLabel}</span>
+  </div>
+
+  <div class="bba-before">
+    {beforeSrc
+      ? <img src={beforeSrc} alt={beforeAlt} draggable="false" />
+      : <div class="bba-placeholder bba-placeholder-before"><slot name="before" /></div>
+    }
+    <span class="bba-label bba-label-before" aria-hidden="true">{beforeLabel}</span>
+  </div>
+
+  <div class="bba-handle" aria-hidden="true">
+    <div class="bba-handle-line" />
+    <div class="bba-handle-knob">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M7 10l-4 0M7 10L4 7M7 10L4 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M13 10l4 0M13 10L16 7M13 10L16 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<style>
+  .bba-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius, 16px);
+    cursor: ew-resize;
+    user-select: none;
+    touch-action: none;
+  }
+
+  /* After layer — full width */
+  .bba-after {
+    position: relative;
+    width: 100%;
+  }
+
+  .bba-after img,
+  .bba-placeholder {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+  }
+
+  .bba-placeholder {
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Before layer — absolutely positioned, clipped */
+  .bba-before {
+    position: absolute;
+    inset: 0;
+    clip-path: inset(0 calc(100% - var(--bba-split, 50%)) 0 0);
+    transition: clip-path 0.02s linear;
+  }
+
+  .bba-before img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .bba-before .bba-placeholder {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: unset;
+  }
+
+  /* Labels */
+  .bba-label {
+    position: absolute;
+    bottom: 14px;
+    padding: 5px 14px;
+    border-radius: 4px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+  }
+
+  .bba-label-before {
+    left: 14px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+  }
+
+  .bba-label-after {
+    right: 14px;
+    background: var(--bba-accent);
+    color: #fff;
+  }
+
+  /* Handle */
+  .bba-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: var(--bba-split, 50%);
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: left 0.02s linear;
+  }
+
+  .bba-handle-line {
+    width: 2px;
+    flex: 1;
+    background: var(--bba-accent);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--bba-accent) 50%, transparent);
+  }
+
+  .bba-handle-knob {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--bba-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--bba-accent) 45%, transparent);
+    border: 3px solid #fff;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  .bba-wrap:hover .bba-handle-knob {
+    transform: translateY(-50%) scale(1.15);
+  }
+
+  .bba-wrap:focus-visible {
+    outline: 3px solid var(--bba-accent);
+    outline-offset: 4px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.bba-wrap').forEach(wrap => {
+    if (wrap.dataset.ready === 'true') return;
+    wrap.dataset.ready = 'true';
+
+    const el = wrap as HTMLElement;
+    let dragging = false;
+
+    function setPercent(percent: number) {
+      const pct = Math.min(Math.max(percent, 2), 98);
+      el.style.setProperty('--bba-split', `${pct}%`);
+      el.setAttribute('aria-valuenow', String(Math.round(pct)));
+    }
+
+    function setPosition(clientX: number) {
+      const rect = el.getBoundingClientRect();
+      setPercent((clientX - rect.left) / rect.width * 100);
+    }
+
+    // Mouse
+    el.addEventListener('mousedown', (e) => {
+      dragging = true;
+      setPosition((e as MouseEvent).clientX);
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (dragging) setPosition((e as MouseEvent).clientX);
+    });
+    window.addEventListener('mouseup', () => { dragging = false; });
+
+    // Touch
+    el.addEventListener('touchstart', (e) => {
+      dragging = true;
+      setPosition(e.touches[0].clientX);
+    }, { passive: true });
+    el.addEventListener('touchmove', (e) => {
+      if (dragging) setPosition(e.touches[0].clientX);
+    }, { passive: true });
+    el.addEventListener('touchend', () => { dragging = false; });
+
+    el.addEventListener('keydown', (e) => {
+      const key = (e as KeyboardEvent).key;
+      const current = Number(el.getAttribute('aria-valuenow') || el.dataset.start || 50);
+      if (key === 'ArrowLeft') {
+        e.preventDefault();
+        setPercent(current - 5);
+      }
+      if (key === 'ArrowRight') {
+        e.preventDefault();
+        setPercent(current + 5);
+      }
+      if (key === 'Home') {
+        e.preventDefault();
+        setPercent(2);
+      }
+      if (key === 'End') {
+        e.preventDefault();
+        setPercent(98);
+      }
+    });
+  });
+</script>

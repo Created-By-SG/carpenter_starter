@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import business from '../../data/business.json';
+import suburbsData from '../../data/suburbs.json';
+import Areas from '../../components/carpenter/Areas.astro';
+import CTA from '../../components/carpenter/CTA.astro';
+const suburbs = Object.entries(suburbsData as Record<string, any>);
+---
+<Base title={`Areas We Service | ${business.name}`} description={`Carpentry and renovation services across the ${business.serviceArea}.`} canonicalUrl={`${business.domain}/suburbs/`}>
+  <main>
+    <section class="hero inner-hero"><div class="hero-bg"><img src="/images/hero.webp" alt="Gold Coast carpentry service area" /></div><div class="hero-overlay"></div><div class="hero-content"><h1>Areas We Service</h1><p>Premium carpentry and renovations across the {business.serviceArea}.</p></div></section>
+    <Areas suburbs={suburbs} />
+    <CTA />
+  </main>
+</Base>

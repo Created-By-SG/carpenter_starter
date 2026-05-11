@@ -1,0 +1,130 @@
+﻿---
+import Base from '../../layouts/Base.astro';
+import business from '../../data/business.json';
+import suburbsData from '../../data/suburbs.json';
+import servicesData from '../../data/services.json';
+import Areas from '../../components/carpenter/Areas.astro';
+import FAQ from '../../components/carpenter/FAQ.astro';
+import CTA from '../../components/carpenter/CTA.astro';
+import Testimonials from '../../components/carpenter/Testimonials.astro';
+import WhyUs from '../../components/carpenter/WhyUs.astro';
+import BlockServiceAreaMap from '../../components/effects/Block-ServiceAreaMap.astro';
+import Gallery from '../../components/carpenter/Gallery.astro';
+
+export function getStaticPaths() {
+  return Object.keys(suburbsData).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const suburb = (suburbsData as Record<string, any>)[slug];
+if (!suburb) return Astro.redirect('/404');
+const canonicalUrl = `${business.domain}/suburbs/${slug}/`;
+const suburbName = suburb.pageMeta.title.replace('Carpenters ', '');
+const relatedServices = (suburb.relatedServices || []).map((serviceSlug: string) => {
+  const service = (servicesData as Record<string, any>)[serviceSlug];
+  return [serviceSlug, service];
+}).filter(([, service]: any[]) => service);
+const nearbySuburbs = [slug, ...(suburb.nearbySuburbs?.suburbs || [])].map((suburbSlug: string) => [suburbSlug, (suburbsData as Record<string, any>)[suburbSlug]]).filter(([, item]: any[]) => item);
+const allSuburbs = Object.entries(suburbsData as Record<string, any>);
+const trustItems = suburb.trustPoints?.items || [];
+const serviceHighlights = suburb.serviceHighlights?.items || [];
+const mapSuburbs = allSuburbs.map(([suburbSlug, item]: any[]) => ({
+  slug: suburbSlug,
+  label: item.pageMeta.title.replace('Carpenters ', ''),
+}));
+const regularQuoteSuburbs = mapSuburbs.map((item) => item.label).join(', ');
+function paragraphs(text = '', size = 2) {
+  const sentences = String(text).split(/(?<=[.!?])\s+/).filter(Boolean);
+  const chunks = [];
+  for (let index = 0; index < sentences.length; index += size) {
+    chunks.push(sentences.slice(index, index + size).join(' '));
+  }
+  return chunks.length ? chunks : [text].filter(Boolean);
+}
+const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: business.faqs.map((faq: any) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) });
+---
+<Base title={suburb.pageMeta.metaTitle} description={suburb.pageMeta.metaDesc} canonicalUrl={canonicalUrl}>
+  <script type="application/ld+json" set:html={faqSchema} slot="head" />
+  <main>
+    <section class="hero inner-hero">
+      <div class="hero-bg"><img src="/images/hero.webp" alt={`Carpentry in ${suburbName}`} /></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content"><h1>{suburb.pageMeta.h1}</h1><p>Premium carpentry, joinery and renovations in {suburbName}.</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Get A Free Quote</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div></div>
+    </section>
+    <section class="section service-section detail-block">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="col-demo reveal-up"><img src="/images/working.webp" alt={`Carpentry work in ${suburbName}`} /></div>
+          <div class="col-copy reveal-up delay-1">
+            <h2>{suburb.introBlend?.heading || `Carpentry Services In ${suburbName}`}</h2>
+            <span class="tagline">Premium work for homes across the {business.serviceArea}</span>
+            {paragraphs(suburb.introBlend?.body || `Premium carpentry, joinery and renovations in ${suburbName}.`).slice(0, 1).map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+    <CTA heading={`Need carpentry in ${suburbName}?`} body="Tell us what you are planning and we will help you work out the clearest next step." button={suburb.cta || 'Get A Free Quote'} />
+    <Gallery />
+    {trustItems.length > 0 && (
+      <section class="section service-section detail-block">
+        <div class="container reveal-up">
+          <h2 class="section-title">{suburb.trustPoints.heading}</h2>
+          <div class="content-card-grid">
+            {trustItems.map((item: string) => (
+              <article class="content-card"><p>{item}</p></article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+    <WhyUs items={business.whyUs} />
+    {serviceHighlights.length > 0 && (
+      <section class="section service-section alt-bg detail-block">
+        <div class="container reveal-up">
+          <h2 class="section-title">{suburb.serviceHighlights.heading}</h2>
+          <div class="content-card-grid">
+            {serviceHighlights.map((item: any) => (
+              <a class="content-card service-card-link" href={`/services/${item.service}/`}>
+                <h3>{item.label}</h3>
+                <p>{item.detail}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+    <Testimonials reviews={business.reviews} />
+    <FAQ faqs={business.faqs} />
+    {suburb.quickFact && (
+      <section class="section service-section alt-bg detail-block">
+        <div class="container narrow-copy reveal-up">
+          <h2>{suburb.quickFact.heading}</h2>
+          {paragraphs(suburb.quickFact.body).map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+    )}
+    <Areas suburbs={allSuburbs} heading={`Areas We Service Around ${suburbName}`} body={`We service the whole ${business.serviceArea}. These are example suburbs for local carpentry enquiries.`} />
+    <section class="section service-section detail-block">
+      <div class="container reveal-up">
+        <BlockServiceAreaMap
+          heading={`Carpentry Service Area Around ${suburbName}`}
+          body={`We service the whole ${business.serviceArea} area and regularly quote carpentry work in ${regularQuoteSuburbs}.`}
+          mainSuburb={suburbName}
+          serviceArea={business.serviceArea}
+          suburbs={mapSuburbs}
+          mapQuery={`${suburbName}, Queensland, Australia`}
+        />
+      </div>
+    </section>
+    {suburb.closingCta && (
+      <section class="section service-section alt-bg detail-block">
+        <div class="container narrow-copy reveal-up">
+          <h2>{suburb.closingCta.heading}</h2>
+          {paragraphs(suburb.closingCta.body).map((paragraph) => <p>{paragraph}</p>)}
+          <button class="btn btn-primary" onclick="openModal()">{suburb.cta || 'Get A Free Quote'}</button>
+        </div>
+      </section>
+    )}
+    <CTA heading={`Questions answered? Let's look at your ${suburbName} project.`} button={suburb.cta || 'Get A Free Quote'} />
+  </main>
+</Base>

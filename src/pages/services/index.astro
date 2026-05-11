@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import business from '../../data/business.json';
+import servicesData from '../../data/services.json';
+import suburbsData from '../../data/suburbs.json';
+import ServiceFeature from '../../components/carpenter/ServiceFeature.astro';
+import Process from '../../components/carpenter/Process.astro';
+import Areas from '../../components/carpenter/Areas.astro';
+import FAQ from '../../components/carpenter/FAQ.astro';
+import CTA from '../../components/carpenter/CTA.astro';
+
+const services = Object.entries(servicesData as Record<string, any>);
+const suburbs = Object.entries(suburbsData as Record<string, any>);
+---
+<Base title={`Services | ${business.name}`} description={`Premium carpentry, joinery, decking and renovation services across the ${business.serviceArea}.`} canonicalUrl={`${business.domain}/services/`}>
+  <main>
+    <section class="hero inner-hero">
+      <div class="hero-bg"><img src="/images/saw.webp" alt="Carpentry tools" /></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content"><h1>Carpentry & Renovation Services</h1><p>Premium workmanship for homes across the {business.serviceArea}.</p></div>
+    </section>
+    {services.map(([_, service], index) => <ServiceFeature service={service} flip={index % 2 === 1} />)}
+    <Process />
+    <Areas suburbs={suburbs} heading={`Services Across The ${business.serviceArea}`} />
+    <FAQ faqs={business.faqs} />
+    <CTA />
+  </main>
+</Base>

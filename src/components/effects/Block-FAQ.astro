@@ -1,0 +1,95 @@
+---
+interface Faq {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs?: Faq[];
+}
+
+const { faqs = [] } = Astro.props;
+---
+
+<div class="faq-accordion">
+  {faqs.map((faq) => (
+    <details class="faq-accordion__item">
+      <summary class="faq-accordion__question">
+        {faq.q}
+        <span class="faq-accordion__icon" aria-hidden="true">+</span>
+      </summary>
+      <p class="faq-accordion__answer">{faq.a}</p>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-accordion {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: clip;
+  }
+
+  .faq-accordion__item {
+    width: 100%;
+    box-sizing: border-box;
+    background: var(--step-card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: var(--step-card-shadow);
+  }
+
+  .faq-accordion__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    color: var(--step-header-text);
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    list-style: none;
+    text-align: left;
+    min-width: 0;
+  }
+
+  .faq-accordion__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-accordion__icon {
+    flex: 0 0 auto;
+    color: var(--hero-highlight-text);
+    font-size: 1.25rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .faq-accordion__item[open] .faq-accordion__icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-accordion__answer {
+    color: var(--step-body-text);
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-body);
+    margin: 0;
+    padding: 0 20px 18px;
+    text-align: left;
+  }
+
+  @media (max-width: 743px) {
+    .faq-accordion__question {
+      padding: 16px 14px;
+      gap: 10px;
+    }
+
+    .faq-accordion__answer {
+      padding: 0 14px 16px;
+    }
+  }
+</style>

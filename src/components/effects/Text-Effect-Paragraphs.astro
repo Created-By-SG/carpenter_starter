@@ -1,0 +1,50 @@
+---
+import TextEffectBody from './Text-Effect-Body.astro';
+
+interface Props {
+  text?: string;
+  maxSentences?: number;
+}
+
+const { text = '', maxSentences = 2 } = Astro.props;
+
+function splitParagraphs(value: string, size: number) {
+  const explicit = value.split(/\n{2,}/).map((part) => part.trim()).filter(Boolean);
+  if (explicit.length > 1) return explicit;
+
+  const sentences = value.match(/[^.!?]+[.!?]+(?:\s|$)|[^.!?]+$/g)?.map((part) => part.trim()).filter(Boolean) ?? [];
+  const paragraphs: string[] = [];
+
+  for (let index = 0; index < sentences.length; index += size) {
+    paragraphs.push(sentences.slice(index, index + size).join(' '));
+  }
+
+  return paragraphs.length ? paragraphs : [value];
+}
+
+const paragraphs = splitParagraphs(text, maxSentences);
+---
+
+<div class="text-effect-paragraphs">
+  {paragraphs.map((paragraph) => (
+    <p class="text-effect-paragraphs__item">
+      <TextEffectBody text={paragraph} />
+    </p>
+  ))}
+</div>
+
+<style>
+  .text-effect-paragraphs {
+    display: grid;
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .text-effect-paragraphs__item {
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import business from '../data/business.json';
+---
+<Base title={`Contact | ${business.name}`} description={`Contact ${business.name} for a free carpentry or renovation quote.`} canonicalUrl={`${business.domain}/contact/`}>
+  <main>
+    <section class="hero inner-hero"><div class="hero-bg"><img src="/images/saw.webp" alt="Contact Starter Carpentry" /></div><div class="hero-overlay"></div><div class="hero-content"><h1>Contact {business.name}</h1><p>Tell us about your carpentry or renovation project.</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Send A Quick Message</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">{business.phone}</a></div></div></section>
+    <section class="section service-section">
+      <div class="container">
+        <div class="quote-page-grid">
+          <div class="quote-page-copy reveal-up">
+            <span class="eyebrow">Free Quote</span>
+            <h2>Tell Us About Your Project</h2>
+            <p>Share the job type, suburb, timing and any details you already know. This demo form shows where a real client quote form would connect to email, CRM or automation later.</p>
+            <div class="quote-contact-list">
+              <a href={`tel:${business.phoneRaw}`}>{business.phone}</a>
+              <a href={`mailto:${business.email}`}>{business.email}</a>
+              <span>{business.hours}</span>
+            </div>
+          </div>
+          <form class="quote-form-card reveal-up delay-1" onsubmit="event.preventDefault(); alert('Thanks. We will be in touch shortly.'); this.reset();">
+            <div class="form-group">
+              <label for="quote-name">Name</label>
+              <input id="quote-name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="quote-phone">Phone</label>
+                <input id="quote-phone" name="phone" type="tel" placeholder="0400 000 000" required />
+              </div>
+              <div class="form-group">
+                <label for="quote-email">Email</label>
+                <input id="quote-email" name="email" type="email" placeholder="you@email.com" />
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="quote-suburb">Suburb</label>
+                <input id="quote-suburb" name="suburb" type="text" placeholder="Coomera" />
+              </div>
+              <div class="form-group">
+                <label for="quote-service">Project Type</label>
+                <select id="quote-service" name="service">
+                  <option value="">Choose one</option>
+                  <option>Kitchen Renovations</option>
+                  <option>Bathroom Renovations</option>
+                  <option>Timber Flooring</option>
+                  <option>Full Home Renovations</option>
+                  <option>Custom Cabinetry</option>
+                  <option>Custom Joinery</option>
+                  <option>Timber Decking</option>
+                  <option>Pergolas Outdoor Living</option>
+                  <option>Carpentry Repairs Maintenance</option>
+                  <option>Heritage Restorations</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="quote-message">Project Details</label>
+              <textarea id="quote-message" name="message" placeholder="Tell us what you need help with"></textarea>
+            </div>
+            <button class="btn btn-primary btn-full" type="submit">Send Quote Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

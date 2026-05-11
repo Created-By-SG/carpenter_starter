@@ -1,0 +1,657 @@
+﻿---
+// src/pages/admin/index.astro
+export const prerender = false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Site Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #111318;
+      --surface: #1a1d24;
+      --border:  rgba(255,255,255,0.09);
+      --text:    #f1f5f9;
+      --muted:   rgba(255,255,255,0.42);
+      --accent:  #5eead4;
+      --primary: #0d9488;
+      --danger:  #f87171;
+      --success: #4ade80;
+      --radius:  7px;
+      --font:    'Inter', system-ui, sans-serif;
+    }
+
+    body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* â”€â”€ Lock screen â”€â”€ */
+    #lock-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lock-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .lock-icon { font-size: 30px; }
+    .lock-title {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .lock-sub { font-size: 13px; color: var(--muted); text-align: center; }
+
+    .pin-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-family: var(--font);
+      font-size: 22px;
+      color: var(--text);
+      outline: none;
+      text-align: center;
+      letter-spacing: 8px;
+      margin-top: 4px;
+    }
+    .pin-input:focus { border-color: var(--accent); }
+
+    .pin-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .pin-btn:hover { background: #0f766e; }
+    .error-msg { font-size: 12px; color: var(--danger); text-align: center; }
+
+    /* â”€â”€ Dashboard â”€â”€ */
+    #dashboard { display: none; grid-template-columns: 200px 1fr; min-height: 100vh; }
+    #dashboard.visible { display: grid; }
+
+    @media (max-width: 767px) {
+      #dashboard.visible { grid-template-columns: 1fr; }
+      .sidebar { position: static !important; height: auto !important; }
+    }
+
+    /* â”€â”€ Sidebar â”€â”€ */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 28px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-item {
+      width: 100%;
+      text-align: left;
+      padding: 9px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: color 0.12s, background 0.12s;
+    }
+    .sidebar-item:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+    .sidebar-item.active { color: var(--accent); background: rgba(94,234,212,0.08); }
+
+    .sidebar-divider { height: 1px; background: var(--border); margin: 12px 0; }
+
+    .save-btn {
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .save-btn:hover:not(:disabled) { background: #0f766e; }
+    .save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .status-msg {
+      margin-top: 10px;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+      color: var(--muted);
+    }
+    .status-msg.ok  { color: var(--success); }
+    .status-msg.err { color: var(--danger); }
+
+    /* â”€â”€ Panel â”€â”€ */
+    .panel { padding: 44px 52px; max-width: 780px; }
+    @media (max-width: 767px) { .panel { padding: 24px 20px; } }
+
+    .section { display: none; flex-direction: column; gap: 28px; }
+    .section.active { display: flex; }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+    }
+
+    .section-helper { font-size: 13px; color: var(--muted); margin-top: -16px; }
+    .section-body { display: flex; flex-direction: column; gap: 18px; }
+
+    /* â”€â”€ Field â”€â”€ */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+
+    .field-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .field-helper {
+      font-size: 11px;
+      color: var(--muted);
+      opacity: 0.7;
+      margin-top: -2px;
+    }
+
+    .field input, .field textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s;
+      width: 100%;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--accent); }
+    .field textarea { resize: vertical; min-height: 82px; line-height: 1.6; }
+
+    /* â”€â”€ Toggle â”€â”€ */
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .toggle-label { font-size: 14px; font-weight: 600; color: var(--text); flex: 1; }
+    .toggle-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    .toggle input { opacity: 0; width: 0; height: 0; }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.1);
+      border-radius: 99px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle input:checked + .toggle-track { background: var(--primary); }
+    .toggle-track::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .toggle input:checked + .toggle-track::after { transform: translateX(20px); }
+
+    .banner-preview {
+      padding: 10px 16px;
+      background: var(--primary);
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+    }
+
+    /* â”€â”€ List card â”€â”€ */
+    .list-card {
+      display: flex;
+      gap: 16px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .list-card-num {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--accent);
+      opacity: 0.2;
+      line-height: 1;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+
+    .list-card-fields { flex: 1; display: flex; flex-direction: column; gap: 12px; }
+
+    /* â”€â”€ Loading â”€â”€ */
+    #loading {
+      display: none;
+      padding: 80px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+    .back-btn {
+      display: block;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: color 0.12s, background 0.12s;
+    }
+    .back-btn:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  </style>
+</head>
+<body>
+
+<!-- Lock Screen -->
+<div id="lock-screen">
+  <div class="lock-card">
+    <div class="lock-icon" aria-hidden="true"><svg width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.7-8 9-4.6-.3-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+    <h1 class="lock-title">Admin Dashboard</h1>
+    <p class="lock-sub">Enter your 8 digit PIN to manage site content</p>
+    <input id="pin-input" class="pin-input" type="password" inputmode="numeric" pattern="[0-9]*" placeholder="........" maxlength="8" autocomplete="one-time-code" autofocus />
+    <button class="pin-btn" id="unlock-btn">Unlock</button>
+    <div class="error-msg" id="lock-error"></div>
+  </div>
+</div>
+
+<div id="loading">Loading content...</div>
+
+<!-- Dashboard -->
+<div id="dashboard">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.4 8.7-8 9-4.6-.3-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg> Admin</div>
+    <button class="sidebar-item active" data-section="contact">Contact</button>
+    <button class="sidebar-item" data-section="banner">Banner</button>
+    <button class="sidebar-item" data-section="reviews">Reviews</button>
+    <button class="sidebar-item" data-section="faqs">FAQs</button>
+    <button class="sidebar-item" data-section="whyus">Why Us</button>
+    <div class="sidebar-divider"></div>
+    <button class="save-btn" id="save-btn">Save & Deploy</button>
+    <div class="status-msg" id="status-msg"></div>
+    <div class="sidebar-divider"></div>
+    <a href="/" class="back-btn">Back to Site</a>
+  </aside>
+
+  <main class="panel">
+
+    <!-- Contact -->
+    <div class="section active" id="section-contact">
+      <div class="section-title">Contact Details</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div class="field">
+            <label class="field-label">Phone (display)</label>
+            <div class="field-helper">Shown on the site, for example 1300 000 000</div>
+            <input type="text" data-path="phone" />
+          </div>
+          <div class="field">
+            <label class="field-label">Phone (raw, no spaces)</label>
+            <div class="field-helper">Used in tel links, for example 1300000000</div>
+            <input type="text" data-path="phoneRaw" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Email</label>
+          <input type="text" data-path="email" />
+        </div>
+        <div class="field">
+          <label class="field-label">Address</label>
+          <input type="text" data-path="address" />
+        </div>
+        <div class="field">
+          <label class="field-label">Trading Hours</label>
+          <div class="field-helper">For example Mon to Fri: 7am to 5pm | Sat: 8am to 2pm | Sun: By appointment</div>
+          <textarea data-path="hours" rows="2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="section" id="section-banner">
+      <div class="section-title">Site Banner</div>
+      <div class="section-helper">One banner. Use it for a special offer or a holiday notice. Toggle it on or off anytime.</div>
+      <div class="section-body">
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label">Show banner on site</div>
+            <div class="toggle-sub">Displays a bar at the top of every page</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="banner-toggle" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div class="field">
+          <label class="field-label">Banner Message</label>
+          <div class="field-helper">For example "Free quote this month" or "Closed Dec 20 to Jan 6, back taking bookings Jan 7"</div>
+          <textarea id="banner-text" rows="2" placeholder="Enter your message..."></textarea>
+        </div>
+        <div id="banner-preview" style="display:none;">
+          <div class="field-label" style="margin-bottom:8px;">Preview</div>
+          <div class="banner-preview" id="banner-preview-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="section" id="section-reviews">
+      <div class="section-title">Reviews</div>
+      <div class="section-body">
+        <div class="two-col">
+          <div class="field">
+            <label class="field-label">Star Rating</label>
+            <div class="field-helper">e.g. 4.9</div>
+            <input type="text" data-path="rating" />
+          </div>
+          <div class="field">
+            <label class="field-label">Review Count</label>
+            <div class="field-helper">e.g. 843</div>
+            <input type="text" data-path="reviewCount" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Years Experience</label>
+          <input type="text" data-path="yearsExperience" />
+        </div>
+        <div id="reviews-body"></div>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="section" id="section-faqs">
+      <div class="section-title">FAQs</div>
+      <div class="section-body" id="faqs-body"></div>
+    </div>
+
+    <!-- Why Us -->
+    <div class="section" id="section-whyus">
+      <div class="section-title">Why Us</div>
+      <div class="section-body" id="whyus-body"></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+let pin = ''
+let content = null
+let fileSha = null
+
+// â”€â”€ Lock â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+document.getElementById('unlock-btn').addEventListener('click', unlock)
+document.getElementById('pin-input').addEventListener('keydown', e => { if (e.key === 'Enter') unlock() })
+
+async function unlock() {
+  pin = document.getElementById('pin-input').value.trim()
+  const errEl = document.getElementById('lock-error')
+  errEl.textContent = ''
+
+  const res = await fetch('/api/admin/check-pin', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ pin }),
+  })
+
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}))
+    errEl.textContent = data.error || 'Incorrect PIN. Try again.'
+    return
+  }
+
+  document.getElementById('lock-screen').style.display = 'none'
+  document.getElementById('loading').style.display = 'block'
+
+  const loadRes = await fetch('/api/admin/load')
+  const data = await loadRes.json()
+
+  if (data.content) {
+    content = data.content
+    fileSha = data.sha
+    document.getElementById('loading').style.display = 'none'
+    document.getElementById('dashboard').classList.add('visible')
+    populateForm()
+  } else {
+    document.getElementById('loading').textContent = 'Failed to load content. Check GitHub env vars.'
+  }
+}
+
+// â”€â”€ Sidebar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+document.querySelectorAll('.sidebar-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'))
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'))
+    btn.classList.add('active')
+    document.getElementById('section-' + btn.dataset.section).classList.add('active')
+  })
+})
+
+// â”€â”€ Populate â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function populateForm() {
+  // Dot-path fields
+  document.querySelectorAll('[data-path]').forEach(el => {
+    el.value = getDeep(content, el.dataset.path.split('.')) ?? ''
+    el.addEventListener('input', () => setDeep(content, el.dataset.path.split('.'), el.value))
+  })
+
+  // Banner
+  const bannerToggle = document.getElementById('banner-toggle')
+  const bannerText   = document.getElementById('banner-text')
+  const bannerPreview = document.getElementById('banner-preview')
+  const bannerPreviewText = document.getElementById('banner-preview-text')
+
+  bannerToggle.checked = !!content.bannerActive
+  bannerText.value = content.bannerMessage || ''
+
+  function updateBannerPreview() {
+    const active = bannerToggle.checked
+    const msg = bannerText.value.trim()
+    bannerPreview.style.display = active && msg ? 'block' : 'none'
+    bannerPreviewText.textContent = msg
+    content.bannerActive = active
+    content.bannerMessage = bannerText.value
+  }
+
+  bannerToggle.addEventListener('change', updateBannerPreview)
+  bannerText.addEventListener('input', updateBannerPreview)
+  updateBannerPreview()
+
+  // Reviews array
+  buildArray('reviews-body', content.reviews, (r, i) => `
+    <div class="list-card">
+      <div class="list-card-num">${i + 1}</div>
+      <div class="list-card-fields">
+        <div class="field"><label class="field-label">Name</label>
+          <input type="text" value="${esc(r.name)}" data-arr="reviews" data-idx="${i}" data-key="name" /></div>
+        <div class="field"><label class="field-label">Suburb</label>
+          <input type="text" value="${esc(r.suburb)}" data-arr="reviews" data-idx="${i}" data-key="suburb" /></div>
+        <div class="field"><label class="field-label">Quote</label>
+          <textarea data-arr="reviews" data-idx="${i}" data-key="quote" rows="3">${esc(r.quote)}</textarea></div>
+      </div>
+    </div>`)
+
+  // FAQs array
+  buildArray('faqs-body', content.faqs, (f, i) => `
+    <div class="list-card">
+      <div class="list-card-num">${i + 1}</div>
+      <div class="list-card-fields">
+        <div class="field"><label class="field-label">Question</label>
+          <input type="text" value="${esc(f.q)}" data-arr="faqs" data-idx="${i}" data-key="q" /></div>
+        <div class="field"><label class="field-label">Answer</label>
+          <textarea data-arr="faqs" data-idx="${i}" data-key="a" rows="4">${esc(f.a)}</textarea></div>
+      </div>
+    </div>`)
+
+  // Why Us array
+  buildArray('whyus-body', content.whyUs, (w, i) => `
+    <div class="list-card">
+      <div class="list-card-num">${i + 1}</div>
+      <div class="list-card-fields">
+        <div class="field"><label class="field-label">Title</label>
+          <input type="text" value="${esc(w.title)}" data-arr="whyUs" data-idx="${i}" data-key="title" /></div>
+        <div class="field"><label class="field-label">Body</label>
+          <textarea data-arr="whyUs" data-idx="${i}" data-key="body" rows="3">${esc(w.body)}</textarea></div>
+      </div>
+    </div>`)
+
+  // Wire array inputs
+  document.querySelectorAll('[data-arr]').forEach(el => {
+    el.addEventListener('input', () => {
+      content[el.dataset.arr][Number(el.dataset.idx)][el.dataset.key] = el.value
+    })
+  })
+}
+
+function buildArray(id, arr, tpl) {
+  if (!arr) return
+  document.getElementById(id).innerHTML = arr.map((item, i) => tpl(item, i)).join('')
+}
+
+// â”€â”€ Save â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+document.getElementById('save-btn').addEventListener('click', save)
+
+async function save() {
+  const btn = document.getElementById('save-btn')
+  const msg = document.getElementById('status-msg')
+  btn.disabled = true
+  btn.textContent = 'Saving...'
+  msg.className = 'status-msg'
+  msg.textContent = ''
+
+  try {
+    const res = await fetch('/api/admin/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pin, content, sha: fileSha }),
+    })
+    const data = await res.json()
+    if (res.ok) {
+      msg.className = 'status-msg ok'
+      msg.textContent = 'Saved. Site rebuilding. Live in about 60 seconds.'
+      fileSha = null
+    } else {
+      msg.className = 'status-msg err'
+      msg.textContent = data.error || 'Save failed. Check GitHub env vars.'
+    }
+  } catch {
+    msg.className = 'status-msg err'
+    msg.textContent = 'Network error. Try again.'
+  } finally {
+    btn.disabled = false
+    btn.textContent = 'Save & Deploy'
+  }
+}
+
+// â”€â”€ Utils â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+function getDeep(obj, path) {
+  return path.reduce((o, k) => o != null ? o[k] : undefined, obj)
+}
+function setDeep(obj, path, value) {
+  if (path.length === 1) { obj[path[0]] = value; return }
+  if (!obj[path[0]]) obj[path[0]] = {}
+  setDeep(obj[path[0]], path.slice(1), value)
+}
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g,'&amp;').replace(/"/g,'&quot;')
+    .replace(/</g,'&lt;').replace(/>/g,'&gt;')
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,306 @@
+---
+interface Step {
+  num?: string;
+  title: string;
+  body?: string;
+  detail?: string;
+}
+
+interface Props {
+  steps?: Step[];
+}
+
+const { steps = [] } = Astro.props;
+const uid = `process-chain-grid-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="process-chain" id={uid}>
+  <div class="process-chain__grid">
+    {steps.map((step, index) => (
+      <article class="process-chain__step" data-index={index}>
+        <div class="process-chain__num">{step.num ?? String(index + 1).padStart(2, '0')}</div>
+        <h3 class="process-chain__title">{step.title}</h3>
+        <p class="process-chain__body">{step.body ?? step.detail}</p>
+      </article>
+    ))}
+  </div>
+</div>
+
+<style>
+  .process-chain {
+    width: 100%;
+  }
+
+  .process-chain__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .process-chain__grid::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    top: 23px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 34%, transparent), transparent);
+    opacity: 0.3;
+  }
+
+  .process-chain__grid::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 89px;
+    bottom: 89px;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 28%, transparent), transparent);
+    opacity: 0.24;
+  }
+
+  @media (min-width: 744px) {
+    .process-chain__grid {
+      gap: var(--s-gap, 16px);
+    }
+
+    .process-chain__grid::before,
+    .process-chain__grid::after {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .process-chain__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .process-chain__step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    min-height: 178px;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 16px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--step-card-bg, rgba(255,255,255,0.1)) 84%, transparent);
+    box-shadow: var(--step-card-shadow);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  @media (min-width: 744px) {
+    .process-chain__step {
+      min-height: 210px;
+      padding: 22px 18px;
+    }
+  }
+
+  .process-chain__step::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 50%;
+    width: 78px;
+    height: 78px;
+    border-radius: 999px;
+    background: radial-gradient(circle, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 25%, transparent) 0%, transparent 72%);
+    filter: blur(24px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.7s ease;
+  }
+
+  .process-chain__step.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .process-chain__step.is-complete {
+    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 36%, transparent);
+  }
+
+  .process-chain__step.is-active {
+    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 58%, transparent);
+    box-shadow:
+      0 0 20px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 20%, transparent),
+      inset 0 0 10px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 12%, transparent),
+      var(--step-card-shadow);
+  }
+
+  .process-chain__step.is-active::before {
+    opacity: 0.62;
+  }
+
+  .process-chain__step.is-active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 20%, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 12%, transparent) 48%, transparent 76%);
+    animation: process-chain-sheen 0.8s ease forwards;
+    pointer-events: none;
+  }
+
+  .process-chain__num {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 10px;
+    border-radius: 999px;
+    background: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    font-weight: var(--font-weight-black);
+    box-shadow: var(--button-primary-shadow);
+  }
+
+  .process-chain__title {
+    position: relative;
+    z-index: 1;
+    color: var(--hero-highlight-text);
+    font-size: 0.82rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    margin: 0 0 8px;
+  }
+
+  @media (min-width: 744px) {
+    .process-chain__title {
+      font-size: var(--font-size-card-title);
+    }
+  }
+
+  .process-chain__body {
+    position: relative;
+    z-index: 1;
+    color: var(--step-body-text);
+    font-size: 0.68rem;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  @media (min-width: 744px) {
+    .process-chain__body {
+      font-size: var(--font-size-body-small);
+      line-height: var(--line-height-body);
+    }
+  }
+
+  @keyframes process-chain-sheen {
+    from {
+      opacity: 0;
+      transform: translateX(-70%);
+    }
+    35% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      transform: translateX(70%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-chain__step {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
+    .process-chain__grid::before,
+    .process-chain__grid::after {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var root = document.getElementById(uid);
+    if (!root) return;
+
+    var grid = root.querySelector('.process-chain__grid');
+    var steps = Array.prototype.slice.call(root.querySelectorAll('.process-chain__step'));
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var hasTriggered = false;
+
+    function revealStep(index) {
+      if (!steps[index]) return;
+      if (steps[index - 1]) steps[index - 1].classList.add('is-complete');
+      steps[index].classList.add('is-visible', 'is-active');
+      if (steps[index - 1]) steps[index - 1].classList.remove('is-active');
+    }
+
+    function drawConnectionsAndReveal() {
+      if (reducedMotion) {
+        steps.forEach(function (step) {
+          step.classList.add('is-visible');
+        });
+        return;
+      }
+
+      revealStep(0);
+
+      var index = 0;
+      function next() {
+        if (index >= steps.length - 1) {
+          if (steps[steps.length - 2]) steps[steps.length - 2].classList.add('is-complete');
+          if (steps[steps.length - 1]) steps[steps.length - 1].classList.add('is-active');
+          return;
+        }
+
+        revealStep(index + 1);
+        index += 1;
+        window.setTimeout(next, 650);
+      }
+
+      window.setTimeout(next, 720);
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !hasTriggered) {
+          hasTriggered = true;
+          drawConnectionsAndReveal();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(root);
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (!hasTriggered || reducedMotion) return;
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(function () {
+        steps.forEach(function (step, index) {
+          step.classList.remove('is-visible', 'is-active', 'is-complete');
+        });
+        drawConnectionsAndReveal();
+      }, 180);
+    });
+  })();
+</script>

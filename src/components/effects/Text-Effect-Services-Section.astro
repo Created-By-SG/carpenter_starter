@@ -1,0 +1,74 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = '' } = Astro.props;
+const uid = `text-scroll-reveal-${Math.random().toString(36).slice(2, 9)}`;
+const words = text.split(/(\s+)/);
+---
+
+<span class="text-scroll-reveal" id={uid} aria-label={text}>
+  {words.map((part) => /\s+/.test(part)
+    ? <Fragment>{part}</Fragment>
+    : <span class="text-scroll-reveal__word" aria-hidden="true">{part}</span>
+  )}
+</span>
+
+<style>
+  .text-scroll-reveal {
+    display: block;
+  }
+
+  .text-scroll-reveal__word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.45em);
+    transition:
+      opacity 0.55s ease,
+      transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--word-index, 0) * 55ms);
+    will-change: opacity, transform;
+  }
+
+  .text-scroll-reveal.in-view .text-scroll-reveal__word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .text-scroll-reveal__word {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var el = document.getElementById(uid);
+    if (!el) return;
+
+    var words = el.querySelectorAll('.text-scroll-reveal__word');
+    words.forEach(function (word, index) {
+      word.style.setProperty('--word-index', index);
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('in-view');
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          el.classList.add('in-view');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.18 });
+
+    observer.observe(el);
+  })();
+</script>

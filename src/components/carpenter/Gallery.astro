@@ -1,0 +1,20 @@
+<section class="section gallery" id="gallery">
+  <div class="container">
+    <h2 class="section-title reveal-up">Our Work</h2>
+    <p class="section-subtitle reveal-up">Drag the slider to see the transformation</p>
+    <div class="ba-slider-grid reveal-up">
+      {[
+        ['before_deck.webp','after_deck.webp','Before deck','After deck'],
+        ['before_floor.webp','after_floor.webp','Before floor','After floor'],
+        ['before_internal.webp','after_internal.webp','Before internal','After internal']
+      ].map(([before, after, beforeAlt, afterAlt]) => (
+        <div class="ba-slider-wrap" data-ba-slider>
+          <div class="ba-before"><img src={`/images/${before}`} class="ba-img-fill" alt={beforeAlt} /></div>
+          <div class="ba-after"><img src={`/images/${after}`} class="ba-img-fill" alt={afterAlt} /></div>
+          <div class="ba-handle" style="left:50%"><div class="ba-handle-line"></div><div class="ba-handle-knob"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
+          <span class="ba-label ba-label-before">Before</span><span class="ba-label ba-label-after">After</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

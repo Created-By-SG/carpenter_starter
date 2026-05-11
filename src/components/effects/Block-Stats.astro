@@ -1,0 +1,125 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  stats?: Stat[];
+}
+
+const { eyebrow, stats = [] } = Astro.props;
+const uid = `stats-count-up-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="stats-count-up" id={uid}>
+  {eyebrow && <p class="stats-count-up__eyebrow">{eyebrow}</p>}
+  <div class="stats-count-up__grid">
+    {stats.map((stat, index) => {
+      const rawValue = stat.value.replace(/[^0-9.]/g, '');
+      const suffix = stat.value.replace(/[0-9.]/g, '');
+      return (
+        <div class="stats-count-up__item" data-value={rawValue} data-suffix={suffix} style={`--stat-index:${index}`}>
+          <h3 class="stats-count-up__value">{stat.value}</h3>
+          <p class="stats-count-up__label">{stat.label}</p>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .stats-count-up {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats-count-up__eyebrow {
+    margin: 0 0 20px;
+    color: var(--section-heading-text);
+    font-size: var(--font-size-trust-bar);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .stats-count-up__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-gap);
+    margin: 32px 0;
+  }
+
+  @media (min-width: 744px) {
+    .stats-count-up__grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .stats-count-up__item {
+    min-width: 0;
+    padding: 24px 16px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: calc(var(--stat-index, 0) * 80ms);
+  }
+
+  .stats-count-up.in-view .stats-count-up__item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stats-count-up__value {
+    color: var(--stat-number-text);
+    font-size: var(--font-size-stat-number);
+    font-weight: var(--font-weight-black);
+    line-height: 1;
+    margin: 0;
+  }
+
+  .stats-count-up__label {
+    margin: 8px 0 0;
+    color: var(--stat-label-text);
+    font-size: var(--font-size-body-small);
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var root = document.getElementById(uid);
+    if (!root) return;
+    var items = Array.prototype.slice.call(root.querySelectorAll('.stats-count-up__item'));
+
+    function animateItem(item) {
+      var valueEl = item.querySelector('.stats-count-up__value');
+      var target = Number(item.dataset.value || 0);
+      var suffix = item.dataset.suffix || '';
+      if (!valueEl || !target || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var start = performance.now();
+      var duration = 900;
+      function tick(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = target * eased;
+        var decimals = String(target).indexOf('.') >= 0 ? 1 : 0;
+        valueEl.textContent = current.toFixed(decimals) + suffix;
+        if (progress < 1) window.requestAnimationFrame(tick);
+      }
+      window.requestAnimationFrame(tick);
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('in-view');
+          items.forEach(animateItem);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(root);
+  })();
+</script>

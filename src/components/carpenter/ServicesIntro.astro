@@ -1,0 +1,23 @@
+---
+interface Props { services: Array<[string, any]>; }
+const { services } = Astro.props;
+---
+<section class="section service-section" id="services">
+  <div class="container">
+    <div class="grid-2col">
+      <div class="col-demo reveal-up"><img src="/images/working.webp" alt="Carpentry work on the Gold Coast" loading="lazy" /></div>
+      <div class="col-copy reveal-up delay-1">
+        <h2 style="font-size: var(--t-h1);">Our Services</h2>
+        <span class="tagline">Expert Carpentry and Renovation Solutions on the Gold Coast</span>
+        <p>From luxury home transformations to custom joinery and outdoor living, we deliver high-quality, tailored carpentry services designed to elevate your lifestyle and add long-term value to your property.</p>
+        <div class="service-link-list">
+          {services.map(([slug, service]) => <a href={`/services/${slug}/`}>{service.shortTitle}</a>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .service-link-list { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .service-link-list a { color:var(--primary); border:1px solid rgba(185,127,68,.25); padding:8px 12px; border-radius:999px; text-decoration:none; font-weight:700; font-size:.9rem; }
+</style>

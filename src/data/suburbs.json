@@ -1,0 +1,772 @@
+﻿{
+  "coomera": {
+    "pageMeta": {
+      "h1": "Carpenters in Coomera",
+      "title": "Carpenters Coomera",
+      "metaTitle": "Coomera Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Coomera. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Coomera",
+      "body": "Coomera is growing fast, but every new estate and established home still faces the same truth: timber needs a skilled hand. Whether it is the harsh western sun on a new patio, the wear and tear inside a busy family home, or tricky custom joinery that off the shelf solutions simply cannot solve, your home deserves more than a quick fix. Premium Carpenter handles every job locals and property investors truly depend on, from full deck and pergola builds to kitchen refits, staircase construction, lock up carpentry on new extensions, and fine timber detailing that makes a house your home."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Coomera's Carpentry Story",
+      "body": "Coomera has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Coomera Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Coomera",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "upper-coomera",
+        "pimpama",
+        "ormeau",
+        "oxenford"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Coomera Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Coomera and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Coomera Quote"
+  },
+  "beenleigh": {
+    "pageMeta": {
+      "h1": "Carpenters in Beenleigh",
+      "title": "Carpenters Beenleigh",
+      "metaTitle": "Beenleigh Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Beenleigh. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Beenleigh",
+      "body": "Beenleigh character homes and the humidity around the Logan River mean timber needs constant attention. Verandah posts weather, Queenslander stumps shift, and family needs change. Premium Carpenter handles every job Beenleigh locals rely on, from full verandah restorations and deck rebuilds to kitchen renovations and structural lock ups."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Beenleigh's Carpentry Story",
+      "body": "Beenleigh has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Beenleigh Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Beenleigh",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "yatala",
+        "stapylton",
+        "ormeau",
+        "pimpama"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Beenleigh Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Beenleigh and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Beenleigh Quote"
+  },
+  "yatala": {
+    "pageMeta": {
+      "h1": "Carpenters in Yatala",
+      "title": "Carpenters Yatala",
+      "metaTitle": "Yatala Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Yatala. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Yatala",
+      "body": "Yatala mix of acreage homes and new estates calls for carpentry that can handle space, moisture, and big ideas. From massive outdoor decks and horse shelters to custom joinery inside your home, every piece of timber needs to be built tough and precisely. Premium Carpenter is Yatala go to for thoughtful carpentry that fits your land and lifestyle."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Yatala's Carpentry Story",
+      "body": "Yatala has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Yatala Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Yatala",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "beenleigh",
+        "stapylton",
+        "ormeau",
+        "pimpama"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Yatala Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Yatala and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Yatala Quote"
+  },
+  "stapylton": {
+    "pageMeta": {
+      "h1": "Carpenters in Stapylton",
+      "title": "Carpenters Stapylton",
+      "metaTitle": "Stapylton Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Stapylton. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Stapylton",
+      "body": "Stapylton industrial edge and mixed residential pockets need a carpenter who is not afraid of heavy timber, commercial fit outs, or moisture affected home repairs. Whether it is a warehouse office fit out, factory mezzanine, or residential deck restoration, Premium Carpenter brings trade grade skills to every job."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Stapylton's Carpentry Story",
+      "body": "Stapylton has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Stapylton Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Stapylton",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "yatala",
+        "beenleigh",
+        "ormeau",
+        "pimpama"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Stapylton Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Stapylton and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Stapylton Quote"
+  },
+  "ormeau": {
+    "pageMeta": {
+      "h1": "Carpenters in Ormeau",
+      "title": "Carpenters Ormeau",
+      "metaTitle": "Ormeau Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Ormeau. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Ormeau",
+      "body": "Ormeau blends rural views with modern convenience, but humidity off the Albert River and rapid housing growth mean timber work has to be spot on. New homes need custom storage that works, older places need deck refreshes, and everyone needs a carpentry team that treats their project like their own."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Ormeau's Carpentry Story",
+      "body": "Ormeau has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Ormeau Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Ormeau",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "pimpama",
+        "coomera",
+        "yatala",
+        "stapylton"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Ormeau Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Ormeau and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Ormeau Quote"
+  },
+  "pimpama": {
+    "pageMeta": {
+      "h1": "Carpenters in Pimpama",
+      "title": "Carpenters Pimpama",
+      "metaTitle": "Pimpama Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Pimpama. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Pimpama",
+      "body": "Pimpama is one of the fastest growing suburbs in the country, but a new house often lacks the personal touch. Standard layouts, empty backyards, and no frills interiors can be transformed with professional carpentry, from timber decks to custom entertainment units and pergolas."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Pimpama's Carpentry Story",
+      "body": "Pimpama has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Pimpama Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Pimpama",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "coomera",
+        "ormeau",
+        "upper-coomera",
+        "oxenford"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Pimpama Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Pimpama and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Pimpama Quote"
+  },
+  "upper-coomera": {
+    "pageMeta": {
+      "h1": "Carpenters in Upper Coomera",
+      "title": "Carpenters Upper Coomera",
+      "metaTitle": "Upper Coomera Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Upper Coomera. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Upper Coomera",
+      "body": "Upper Coomera hillside homes and growing estates need carpentry that copes with sloping blocks, bushfire overlays, and strong family demands. From retaining wall sleepers and stepped decks to clever under house storage, Premium Carpenter knows how to make the most of every site."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Upper Coomera's Carpentry Story",
+      "body": "Upper Coomera has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Upper Coomera Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Upper Coomera",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "coomera",
+        "oxenford",
+        "pimpama",
+        "helensvale"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Upper Coomera Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Upper Coomera and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Upper Coomera Quote"
+  },
+  "oxenford": {
+    "pageMeta": {
+      "h1": "Carpenters in Oxenford",
+      "title": "Carpenters Oxenford",
+      "metaTitle": "Oxenford Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Oxenford. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Oxenford",
+      "body": "Oxenford is a family hub, and homes need work that can take a bit of everything. Premium Carpenter handles all Oxenford carpentry needs: custom storage, outdoor decks, and full renovation lock ups that turn dated houses into modern family homes."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Oxenford's Carpentry Story",
+      "body": "Oxenford has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Oxenford Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Oxenford",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "upper-coomera",
+        "helensvale",
+        "coomera",
+        "hope-island"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Oxenford Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Oxenford and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Oxenford Quote"
+  },
+  "helensvale": {
+    "pageMeta": {
+      "h1": "Carpenters in Helensvale",
+      "title": "Carpenters Helensvale",
+      "metaTitle": "Helensvale Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Helensvale. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Helensvale",
+      "body": "Helensvale is a well established community with homes now reaching an age where builder grade finishes need refreshing. Premium Carpenter specialises in breathing new life into Helensvale homes through exceptional joinery, robust outdoor structures, and full renovation carpentry."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Helensvale's Carpentry Story",
+      "body": "Helensvale has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Helensvale Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Helensvale",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "hope-island",
+        "oxenford",
+        "upper-coomera",
+        "coomera"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Helensvale Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Helensvale and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Helensvale Quote"
+  },
+  "hope-island": {
+    "pageMeta": {
+      "h1": "Carpenters in Hope Island",
+      "title": "Carpenters Hope Island",
+      "metaTitle": "Hope Island Carpenters | Custom Carpentry & Renovations | Premium Carpenter",
+      "metaDesc": "Premium Carpenter provides custom carpentry, decking, joinery, renovations and repairs in Hope Island. Licensed, insured and ready for free quotes."
+    },
+    "introBlend": {
+      "heading": "Premium Carpentry in Hope Island",
+      "body": "Hope Island homes set a high standard, and only the finest timber work fits in. Whether it is a waterfront deck, a kitchen refit with handcrafted cabinetry, or intricate joinery to match the resort aesthetic of your home, Premium Carpenter delivers precision carpentry that enhances luxury and liveability."
+    },
+    "quickFact": {
+      "heading": "Did You Know? Hope Island's Carpentry Story",
+      "body": "Hope Island has a practical local building story shaped by timber, trade skills, and homes built for Queensland living. Premium Carpenter continues that connection with careful joinery, structural skill, and durable outdoor carpentry."
+    },
+    "trustPoints": {
+      "heading": "Why We're the Carpenters Hope Island Trusts",
+      "items": [
+        "Fair, transparent pricing with clear written quotes.",
+        "On time, tidy, and respectful in your home.",
+        "Premium materials selected for local conditions.",
+        "Licensed and fully insured carpenters.",
+        "Decks, pergolas, joinery, renovations, repairs, and structural work."
+      ]
+    },
+    "serviceHighlights": {
+      "heading": "Our Carpentry Services in Hope Island",
+      "items": [
+        {
+          "service": "custom-joinery",
+          "label": "Custom Joinery",
+          "detail": "Fine timber joinery, wall panelling, staircases, and detailed finishing work."
+        },
+        {
+          "service": "timber-decking",
+          "label": "Timber Decking",
+          "detail": "Hardwood decks, boardwalks, and pool surrounds built for the Queensland lifestyle."
+        },
+        {
+          "service": "full-home-renovations",
+          "label": "Full Home Renovations",
+          "detail": "Comprehensive renovation carpentry extensions, knock throughs, and complete makeovers."
+        },
+        {
+          "service": "timber-flooring",
+          "label": "Timber Flooring",
+          "detail": "Solid and engineered timber floor installation, sanding, and finishing."
+        },
+        {
+          "service": "carpentry-repairs-maintenance",
+          "label": "Carpentry Repairs Maintenance",
+          "detail": "Rot repair, weatherboard replacement, eaves restoration, and general timber maintenance."
+        }
+      ]
+    },
+    "nearbySuburbs": {
+      "heading": "Also Serving Nearby",
+      "suburbs": [
+        "helensvale",
+        "oxenford",
+        "upper-coomera",
+        "coomera"
+      ]
+    },
+    "closingCta": {
+      "heading": "Carpentry That Fits Your Hope Island Life",
+      "body": "Call Premium Carpenter for a free, no pressure quote. We cover Hope Island and the wider Gold Coast."
+    },
+    "relatedServices": [
+      "custom-joinery",
+      "timber-decking",
+      "full-home-renovations",
+      "timber-flooring",
+      "carpentry-repairs-maintenance"
+    ],
+    "cta": "Get a Hope Island Quote"
+  }
+}

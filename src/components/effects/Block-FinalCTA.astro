@@ -1,0 +1,66 @@
+---
+interface Props {
+  warrantyYears?: string | number;
+  heading?: string;
+  cta?: string;
+  obligation?: string;
+}
+
+const {
+  warrantyYears = '2',
+  heading = 'Thousands of Homes Transformed',
+  cta = 'Get A Free Quote',
+  obligation = '100% obligation-free',
+} = Astro.props;
+---
+
+<div class="final-cta-badge">
+  <div class="final-cta-badge__stamp">
+    {warrantyYears}YR<br />WORKMANSHIP WARRANTY
+  </div>
+  <h2 class="final-cta-badge__heading">{heading}</h2>
+  <button type="button" onclick="openQuoteModal()" class="btn-cta btn-cta--lg">
+    {cta}
+  </button>
+  <p class="final-cta-badge__obligation">{obligation}</p>
+</div>
+
+<style>
+  .final-cta-badge {
+    width: 100%;
+    text-align: center;
+  }
+
+  .final-cta-badge__stamp {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 10px 22px;
+    border: 2px solid var(--badge-border);
+    border-radius: 10px;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    font-weight: var(--font-weight-black);
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .final-cta-badge__heading {
+    color: var(--section-heading-text);
+    font-size: var(--font-size-section-heading);
+    font-weight: var(--font-weight-black);
+    line-height: var(--line-height-section);
+    margin: 0 0 24px;
+    text-shadow: var(--section-heading-shadow);
+  }
+
+  .final-cta-badge__obligation {
+    margin: 12px 0 0;
+    color: var(--section-muted-text);
+    font-size: var(--font-size-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+</style>

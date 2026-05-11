@@ -1,0 +1,142 @@
+---
+interface Suburb {
+  slug?: string;
+  title?: string;
+  label?: string;
+  metaDesc?: string;
+  href?: string;
+}
+
+interface Props {
+  suburbs?: Suburb[];
+  mode?: 'cards' | 'pills';
+}
+
+const { suburbs = [], mode = 'pills' } = Astro.props;
+const uid = `suburb-links-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class:list={['suburb-links-wave', `suburb-links-wave--${mode}`]} id={uid}>
+  <div class="suburb-links-wave__grid">
+    {suburbs.map((suburb, index) => {
+      const label = suburb.label ?? suburb.title ?? '';
+      const href = suburb.href ?? `/suburbs/${suburb.slug}/`;
+      return (
+        <a href={href} class="suburb-links-wave__link" style={`--link-index:${index}`}>
+          <span class="suburb-links-wave__title">{label}</span>
+          {mode === 'cards' && suburb.metaDesc && (
+            <span class="suburb-links-wave__desc">{suburb.metaDesc.substring(0, 100)}...</span>
+          )}
+        </a>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .suburb-links-wave {
+    width: 100%;
+  }
+
+  .suburb-links-wave__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s-gap);
+  }
+
+  .suburb-links-wave--cards .suburb-links-wave__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 24px 0;
+  }
+
+  @media (min-width: 600px) {
+    .suburb-links-wave--cards .suburb-links-wave__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .suburb-links-wave--cards .suburb-links-wave__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .suburb-links-wave__link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 0;
+    padding: 8px 16px;
+    border: 1px solid var(--pill-primary-border);
+    border-radius: 999px;
+    background: var(--pill-primary-bg);
+    color: var(--pill-primary-text);
+    font-size: var(--font-size-body-small);
+    font-weight: var(--font-weight-semi-bold);
+    text-align: center;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.45s ease, transform 0.45s ease, border-color 0.18s, background 0.18s;
+    transition-delay: calc(var(--link-index, 0) * 45ms);
+  }
+
+  .suburb-links-wave--cards .suburb-links-wave__link {
+    width: 100%;
+    min-height: 150px;
+    flex-direction: column;
+    border-radius: 10px;
+    background: var(--card-bg);
+    border-color: var(--card-border);
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+  }
+
+  .suburb-links-wave.in-view .suburb-links-wave__link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .suburb-links-wave__link:hover {
+    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 56%, transparent);
+    background: rgba(94, 234, 212, 0.18);
+    transform: translateY(-2px);
+  }
+
+  .suburb-links-wave__title {
+    color: inherit;
+  }
+
+  .suburb-links-wave--cards .suburb-links-wave__title {
+    color: var(--card-title-text);
+    font-size: var(--font-size-card-title);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+  }
+
+  .suburb-links-wave__desc {
+    color: var(--card-body-text);
+    font-size: var(--font-size-body-small);
+    line-height: var(--line-height-card);
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var root = document.getElementById(uid);
+    if (!root) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          root.classList.add('in-view');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(root);
+  })();
+</script>

@@ -1,0 +1,11 @@
+---
+interface Props { heading?: string; body?: string; button?: string; }
+const { heading = 'Ready to transform your home?', body = 'Get a free quote from our expert team today.', button = 'Get Your Free Quote' } = Astro.props;
+---
+<section class="cta-section">
+  <div class="container">
+    <h2>{heading}</h2>
+    <p>{body}</p>
+    <button class="btn btn-accent btn-lg" onclick="openModal()">{button}</button>
+  </div>
+</section>

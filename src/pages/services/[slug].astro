@@ -1,0 +1,191 @@
+﻿---
+import Base from '../../layouts/Base.astro';
+import business from '../../data/business.json';
+import servicesData from '../../data/services.json';
+import suburbsData from '../../data/suburbs.json';
+import ServiceFeature from '../../components/carpenter/ServiceFeature.astro';
+import Process from '../../components/carpenter/Process.astro';
+import Areas from '../../components/carpenter/Areas.astro';
+import FAQ from '../../components/carpenter/FAQ.astro';
+import CTA from '../../components/carpenter/CTA.astro';
+import Testimonials from '../../components/carpenter/Testimonials.astro';
+import WhyUs from '../../components/carpenter/WhyUs.astro';
+import BlockServiceAreaMap from '../../components/effects/Block-ServiceAreaMap.astro';
+import Gallery from '../../components/carpenter/Gallery.astro';
+
+export function getStaticPaths() {
+  return Object.keys(servicesData).map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const service = (servicesData as Record<string, any>)[slug];
+if (!service) return Astro.redirect('/404');
+const canonicalUrl = `${business.domain}/services/${slug}/`;
+const relatedSuburbs = (service.relatedSuburbs || []).map((suburbSlug: string) => {
+  const suburb = (suburbsData as Record<string, any>)[suburbSlug];
+  return [suburbSlug, suburb];
+}).filter(([, suburb]: any[]) => suburb);
+const allSuburbs = Object.entries(suburbsData as Record<string, any>);
+const expertiseItems = service.serviceExpertise?.items || service.localRelevance?.items || [];
+const processSteps = service.ourProcess?.steps || [];
+const serviceAreaSuburbs = allSuburbs.map(([suburbSlug, suburb]: any[]) => ({
+  slug: suburbSlug,
+  label: suburb.pageMeta.title.replace('Carpenters ', ''),
+}));
+
+function paragraphs(text = '', size = 2) {
+  const sentences = String(text).split(/(?<=[.!?])\s+/).filter(Boolean);
+  const chunks = [];
+  for (let index = 0; index < sentences.length; index += size) {
+    chunks.push(sentences.slice(index, index + size).join(' '));
+  }
+  return chunks.length ? chunks : [text].filter(Boolean);
+}
+
+const teamTrust = service.teamTrust || {
+  heading: `Your Local ${service.shortTitle} Carpenter`,
+  body: `Premium Carpenter brings planning, careful site preparation, quality materials, and clean finishing to every ${service.shortTitle.toLowerCase()} project. We quote clearly, communicate properly, and build with the Gold Coast climate in mind.`
+};
+
+const expertise = service.serviceExpertise || {
+  heading: `What We Handle For ${service.shortTitle}`,
+  body: `Every project is planned as a complete carpentry outcome, not just a quick visit.`,
+  items: [
+    { label: 'Planning And Scope', detail: 'We confirm the layout, materials, access, finish, and practical details before work begins.' },
+    { label: 'Site Preparation', detail: 'The work area is protected, checked, measured, and prepared so the finished result sits properly.' },
+    { label: 'Carpentry And Fit Off', detail: 'Structural and finish carpentry are completed with clean lines, strong fixings, and careful detailing.' },
+    { label: 'Clean Handover', detail: 'We tidy the work area, walk through the result with you, and explain any care steps.' }
+  ]
+};
+
+const localRelevance = service.localRelevance || {
+  heading: `${service.shortTitle} Built For Gold Coast Homes`,
+  body: `Gold Coast homes deal with humidity, sun, salt air, storms, and busy family use. Materials and fixings need to be chosen for that reality.`,
+  items: [
+    { label: 'Coastal Conditions', detail: 'We select materials and finishes that suit humidity, heat, and salt air exposure.' },
+    { label: 'Practical Detailing', detail: 'Movement gaps, sealing, ventilation, and drainage are considered before they become problems.' },
+    { label: 'Lasting Finish', detail: 'The work is built to look sharp on handover and stay reliable after everyday use.' }
+  ]
+};
+
+const process = service.ourProcess || {
+  heading: `How We Deliver ${service.shortTitle}`,
+  steps: [
+    { num: '1', title: 'Consultation', detail: 'We talk through the project, inspect the space, and understand what you want to achieve.' },
+    { num: '2', title: 'Measure And Quote', detail: 'We confirm measurements, materials, timing, and provide a clear written quote.' },
+    { num: '3', title: 'Build', detail: 'Carpentry work is completed with tidy site habits and steady communication.' },
+    { num: '4', title: 'Final Walkthrough', detail: 'We check the finish with you and make sure the result is ready to use.' }
+  ]
+};
+
+const serviceSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: service.pageMeta.h1,
+  serviceType: service.shortTitle,
+  description: service.pageMeta.metaDesc,
+  url: canonicalUrl,
+  provider: { '@type': 'LocalBusiness', name: business.name, telephone: business.phone, url: business.domain },
+  areaServed: serviceAreaSuburbs.map((suburb: any) => ({ '@type': 'Place', name: suburb.label }))
+});
+const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: business.faqs.map((faq: any) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) });
+---
+<Base title={service.pageMeta.metaTitle} description={service.pageMeta.metaDesc} canonicalUrl={canonicalUrl}>
+  <script type="application/ld+json" set:html={serviceSchema} slot="head" />
+  <script type="application/ld+json" set:html={faqSchema} slot="head" />
+  <main>
+    <section class="hero inner-hero">
+      <div class="hero-bg"><img src={service.image} alt={service.alt} /></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content"><h1>{service.pageMeta.h1}</h1><p>{service.tagline}</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">{service.cta}</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div></div>
+    </section>
+    <section class="section service-section detail-block">
+      <div class="container">
+        <div class="grid-2col">
+          <div class="col-demo reveal-up"><img src={service.image} alt={service.alt} loading="lazy" /></div>
+          <div class="col-copy reveal-up delay-1">
+            <h2>{service.introBlend?.heading || service.shortTitle}</h2>
+            <span class="tagline">{service.shortDescription}</span>
+            {paragraphs(service.introBlend?.body || service.body).slice(0, 1).map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+        </div>
+      </div>
+    </section>
+    <CTA heading={`Need ${service.shortTitle.toLowerCase()} on the Gold Coast?`} body="Tell us what you are planning and we will help you map the next step clearly." button={service.cta} />
+    <Gallery />
+    <section class="section service-section alt-bg detail-block">
+      <div class="container narrow-copy reveal-up">
+        <h2>{teamTrust.heading}</h2>
+        {paragraphs(teamTrust.body).map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </section>
+    <WhyUs items={business.whyUs} />
+    <section class="section service-section detail-block">
+      <div class="container reveal-up">
+        <h2 class="section-title">{expertise.heading}</h2>
+        {expertise.body && <p class="section-intro">{expertise.body}</p>}
+        <div class="content-card-grid">
+          {expertise.items.map((item: any) => (
+            <article class="content-card">
+              <h3>{item.label}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="section service-section alt-bg detail-block">
+      <div class="container reveal-up">
+        <h2 class="section-title">{localRelevance.heading}</h2>
+        {localRelevance.body && <p class="section-intro">{localRelevance.body}</p>}
+        <div class="content-card-grid">
+          {localRelevance.items.map((item: any) => (
+            <article class="content-card">
+              <h3>{item.label}</h3>
+              <p>{item.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <section class="section process-section detail-block">
+      <div class="container reveal-up">
+        <h2 class="section-title">{process.heading}</h2>
+        <div class="process-grid">
+          {process.steps.map((step: any, index: number) => (
+            <article class="process-card">
+              <div class="process-num">{step.num || String(index + 1).padStart(2, '0')}</div>
+              <h3>{step.title}</h3>
+              <p>{step.detail}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+    <Testimonials reviews={business.reviews} />
+    <FAQ faqs={business.faqs} />
+    {service.closingCta && (
+      <section class="section service-section alt-bg detail-block">
+        <div class="container narrow-copy reveal-up">
+          <h2>{service.closingCta.heading}</h2>
+          {paragraphs(service.closingCta.body).map((paragraph) => <p>{paragraph}</p>)}
+          <button class="btn btn-primary" onclick="openModal()">{service.cta}</button>
+        </div>
+      </section>
+    )}
+    <CTA heading={`Questions answered? Let's price the next step.`} body="A clear quote makes decisions easier before any work begins." button={service.cta} />
+    <Areas suburbs={allSuburbs} heading={`Available For ${service.shortTitle}`} body={`We service the whole ${business.serviceArea}. These are example suburbs where this service is commonly quoted.`} />
+    <section class="section service-section detail-block">
+      <div class="container reveal-up">
+        <BlockServiceAreaMap
+          heading={`${service.shortTitle} Across The ${business.serviceArea}`}
+          body={`We provide ${service.shortTitle.toLowerCase()} across the ${business.serviceArea}, including regular quotes in these example suburbs.`}
+          serviceArea={business.serviceArea}
+          suburbs={serviceAreaSuburbs}
+          mapQuery={`${business.serviceArea}, Queensland, Australia`}
+        />
+      </div>
+    </section>
+    <CTA heading={`Ready to discuss ${service.shortTitle.toLowerCase()}?`} button={service.cta} />
+  </main>
+</Base>
