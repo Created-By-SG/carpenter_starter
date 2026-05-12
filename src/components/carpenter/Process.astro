@@ -11,9 +11,9 @@ const icons = [
   <div class="container">
     <h2 class="section-title reveal-up">Our Process</h2>
     <p class="section-subtitle reveal-up">How We Work With You, Not Just For You</p>
-    <div class="process-grid reveal-up">
+    <div class="process-grid process-ripple">
       {['Initial Consultation','Detailed Quoting','Design & Planning','Construction','Final Walkthrough'].map((title, index) => (
-        <div class="process-card">
+        <div class="process-card reveal-up">
           <div class="process-icon" set:html={icons[index]} />
           <h3>Step {index + 1}: {title}</h3>
           <p>{['We visit your home, listen to your ideas, and take measurements.','You receive a clear, itemised quote with options where possible.','We finalise designs, source materials, and prepare approvals if needed.','Our licensed team manages all aspects of the build from start to finish.','We check everything is finished to spec and answer any questions.'][index]}</p>

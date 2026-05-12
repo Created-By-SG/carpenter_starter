@@ -63,7 +63,7 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
   }
 
   .services-wave__lines :global(line) {
-    stroke: var(--hero-highlight-text, #5eead4);
+    stroke: var(--color-accent, #e67e22);
     stroke-width: 1;
     stroke-dasharray: 3 5;
     opacity: 0;
@@ -80,10 +80,11 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
     justify-content: center;
     overflow: hidden;
     padding: 16px 10px;
-    border: 1px solid color-mix(in srgb, var(--hero-highlight-text, #5eead4) 28%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary, #006699) 18%, transparent);
     border-radius: 10px;
-    background: color-mix(in srgb, var(--card-bg, rgba(255,255,255,0.06)) 82%, transparent);
-    box-shadow: var(--step-card-shadow);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.94), color-mix(in srgb, var(--color-primary, #006699) 7%, #ffffff));
+    box-shadow: 0 14px 34px rgba(0, 102, 153, 0.08);
     text-align: center;
     text-decoration: none;
     opacity: 0.15;
@@ -121,7 +122,7 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
     width: 86px;
     height: 86px;
     border-radius: 999px;
-    background: radial-gradient(circle, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 28%, transparent) 0%, transparent 72%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-primary, #006699) 18%, transparent) 0%, transparent 72%);
     filter: blur(28px);
     opacity: 0;
     pointer-events: none;
@@ -134,7 +135,7 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
     inset: -40% auto auto -60%;
     width: 55%;
     height: 180%;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--hero-highlight-text, #5eead4) 16%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent, #e67e22) 18%, transparent), transparent);
     opacity: 0;
     transform: rotate(20deg);
     pointer-events: none;
@@ -146,12 +147,12 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
   }
 
   .services-wave__card.wave-active {
-    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 58%, transparent);
-    background: color-mix(in srgb, var(--card-bg, rgba(255,255,255,0.06)) 72%, var(--hero-highlight-text, #5eead4) 8%);
+    border-color: color-mix(in srgb, var(--color-accent, #e67e22) 42%, transparent);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.96), color-mix(in srgb, var(--color-primary, #006699) 10%, #ffffff));
     box-shadow:
-      0 0 22px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 24%, transparent),
-      inset 0 0 12px color-mix(in srgb, var(--hero-highlight-text, #5eead4) 13%, transparent),
-      var(--step-card-shadow);
+      0 18px 42px rgba(0, 102, 153, 0.13),
+      inset 0 0 0 1px color-mix(in srgb, var(--color-accent, #e67e22) 18%, transparent);
     transform: translateY(-2px) scale(1.02);
   }
 
@@ -165,19 +166,20 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
 
   .services-wave__card:hover,
   .services-wave__card:focus-visible {
-    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 58%, transparent);
+    border-color: color-mix(in srgb, var(--color-accent, #e67e22) 48%, transparent);
+    box-shadow: 0 18px 42px rgba(0, 102, 153, 0.13);
     transform: translateY(-3px);
   }
 
   .services-wave__card.neighbor-hover {
-    border-color: color-mix(in srgb, var(--hero-highlight-text, #5eead4) 32%, transparent);
+    border-color: color-mix(in srgb, var(--color-primary, #006699) 32%, transparent);
     transform: translateY(-1px);
   }
 
   .services-wave__title {
-    color: var(--hero-highlight-text);
-    font-size: 0.84rem;
-    font-weight: var(--font-weight-bold);
+    color: var(--color-primary, #006699);
+    font-size: 0.98rem;
+    font-weight: 900;
     line-height: 1.22;
     margin: 0 0 8px;
     opacity: 0;
@@ -187,7 +189,7 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
 
   @media (min-width: 744px) {
     .services-wave__title {
-      font-size: var(--font-size-card-title);
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
       line-height: var(--line-height-section);
     }
   }
@@ -197,9 +199,9 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
   }
 
   .services-wave__body {
-    color: var(--card-body-text);
-    font-size: 0.7rem;
-    font-weight: var(--font-weight-bold);
+    color: var(--color-text-muted, #4f5b66);
+    font-size: 0.86rem;
+    font-weight: 600;
     line-height: 1.42;
     margin: 0;
     opacity: 0;
@@ -208,7 +210,7 @@ const uid = `services-wave-grid-${Math.random().toString(36).slice(2, 9)}`;
 
   @media (min-width: 744px) {
     .services-wave__body {
-      font-size: var(--font-size-body-small);
+      font-size: clamp(0.95rem, 1.05vw, 1.05rem);
       line-height: var(--line-height-card);
     }
   }

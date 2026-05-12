@@ -17,7 +17,7 @@ To change an effect, copy the chosen file from `C:\Users\sam_g\Desktop\Codex\1_t
 | `Text-Effect-Suburbs-Sub.astro` | `1_tools/scroll/scroll-fade-up-once.astro` |
 | `Text-Effect-Suburbs-Body.astro` | `1_tools/scroll/scroll-fade-up-once.astro` |
 | `Text-Effect-Home-Hero.astro` | `1_tools/text/text-typewriter.astro` |
-| `Text-Effect-Home-Section.astro` | `1_tools/scroll/scroll-stagger-grid.astro` |
+| `Text-Effect-Home-Section.astro` | `1_tools/text/text-underline-sweep.astro` |
 | `Text-Effect-Home-Sub.astro` | `1_tools/scroll/scroll-fade-up-once.astro` |
 | `Text-Effect-Home-Body.astro` | `1_tools/scroll/scroll-fade-up-once.astro` |
 | `Text-Effect-Span.astro` | `1_tools/text/text-highlight-span.astro` |

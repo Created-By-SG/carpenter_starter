@@ -12,6 +12,8 @@ import Testimonials from '../../components/carpenter/Testimonials.astro';
 import WhyUs from '../../components/carpenter/WhyUs.astro';
 import BlockServiceAreaMap from '../../components/effects/Block-ServiceAreaMap.astro';
 import Gallery from '../../components/carpenter/Gallery.astro';
+import TextEffectHero from '../../components/effects/Text-Effect-Services-Hero.astro';
+import HeroBackgroundEffect from '../../components/effects/Hero-Background-Effect.astro';
 
 export function getStaticPaths() {
   return Object.keys(servicesData).map((slug) => ({ params: { slug } }));
@@ -78,6 +80,28 @@ const process = service.ourProcess || {
   ]
 };
 
+function gridSafeItems(items: any[], fallback: any) {
+  const clean = [...items];
+  if (clean.length === 5) clean.push(fallback);
+  return clean;
+}
+
+const expertiseGridItems = gridSafeItems(expertise.items, {
+  label: 'Clear Quote Before Work Starts',
+  detail: 'You get a practical scope, written pricing, and a clear next step before anyone starts cutting timber.'
+});
+
+const localRelevanceGridItems = gridSafeItems(localRelevance.items, {
+  label: 'Workmanship Checked Before Handover',
+  detail: 'We walk through the finish, check the details, and make sure the result is ready for everyday use.'
+});
+
+const processGridSteps = gridSafeItems(process.steps, {
+  num: String(process.steps.length + 1),
+  title: 'Care Advice',
+  detail: 'We explain the finished work, answer questions, and leave you with practical care advice.'
+});
+
 const serviceSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Service',
@@ -95,9 +119,8 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
   <script type="application/ld+json" set:html={faqSchema} slot="head" />
   <main>
     <section class="hero inner-hero">
-      <div class="hero-bg"><img src={service.image} alt={service.alt} /></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content"><h1>{service.pageMeta.h1}</h1><p>{service.tagline}</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">{service.cta}</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div></div>
+      <HeroBackgroundEffect image={service.image} imageAlt={service.alt} />
+      <div class="hero-content"><h1><TextEffectHero text={service.pageMeta.h1} /></h1><p>{service.tagline}</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">{service.cta}</button></div></div>
     </section>
     <section class="section service-section detail-block">
       <div class="container">
@@ -120,12 +143,12 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
       </div>
     </section>
     <WhyUs items={business.whyUs} />
-    <section class="section service-section detail-block">
+    <section class="section service-section detail-block checklist-section">
       <div class="container reveal-up">
         <h2 class="section-title">{expertise.heading}</h2>
         {expertise.body && <p class="section-intro">{expertise.body}</p>}
-        <div class="content-card-grid">
-          {expertise.items.map((item: any) => (
+        <div class="content-card-grid checklist-grid">
+          {expertiseGridItems.map((item: any) => (
             <article class="content-card">
               <h3>{item.label}</h3>
               <p>{item.detail}</p>
@@ -134,12 +157,12 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
         </div>
       </div>
     </section>
-    <section class="section service-section alt-bg detail-block">
+    <section class="section service-section alt-bg detail-block checklist-section">
       <div class="container reveal-up">
         <h2 class="section-title">{localRelevance.heading}</h2>
         {localRelevance.body && <p class="section-intro">{localRelevance.body}</p>}
-        <div class="content-card-grid">
-          {localRelevance.items.map((item: any) => (
+        <div class="content-card-grid checklist-grid">
+          {localRelevanceGridItems.map((item: any) => (
             <article class="content-card">
               <h3>{item.label}</h3>
               <p>{item.detail}</p>
@@ -152,7 +175,7 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
       <div class="container reveal-up">
         <h2 class="section-title">{process.heading}</h2>
         <div class="process-grid">
-          {process.steps.map((step: any, index: number) => (
+          {processGridSteps.map((step: any, index: number) => (
             <article class="process-card">
               <div class="process-num">{step.num || String(index + 1).padStart(2, '0')}</div>
               <h3>{step.title}</h3>

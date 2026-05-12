@@ -14,6 +14,8 @@ import BlockServices from '../components/effects/Block-Services.astro';
 import BlockServiceAreaMap from '../components/effects/Block-ServiceAreaMap.astro';
 import TextEffectSection from '../components/effects/Text-Effect-Home-Section.astro';
 import TextEffectBody from '../components/effects/Text-Effect-Home-Body.astro';
+import TextEffectHero from '../components/effects/Text-Effect-Home-Hero.astro';
+import HeroBackgroundEffect from '../components/effects/Hero-Background-Effect.astro';
 
 const services = Object.entries(servicesData as Record<string, any>);
 const suburbs = Object.entries(suburbsData as Record<string, any>);
@@ -36,12 +38,24 @@ const faqSchema = JSON.stringify({
   <script type="application/ld+json" set:html={faqSchema} slot="head" />
   <main>
     <section class="hero">
-      <div class="hero-bg"><img src="/images/hero.webp" alt="Starter Carpentry hero" /></div>
-      <div class="hero-overlay"></div>
+      <HeroBackgroundEffect image="/images/hero.webp" imageAlt="Premium carpentry hero" />
       <div class="hero-content">
-        <h1>Premium Carpentry & Renovations on the Gold Coast</h1>
+        <h1><TextEffectHero text="Premium Carpentry & Renovations on the Gold Coast" /></h1>
         <p>Custom Joinery. Luxury Renovations. Done Right.</p>
-        <div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Grab a Free Quote Today</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div>
+        <div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Grab a Free Quote Today</button></div>
+      </div>
+    </section>
+
+    <Gallery />
+
+    <section class="section open-copy-section" id="about">
+      <div class="container open-copy">
+        <p class="open-copy__eyebrow reveal-up">Starting A New Project?</p>
+        <h2 class="reveal-up delay-1">Custom Carpentry That Feels Planned, Built And Finished Properly.</h2>
+        <p class="reveal-up delay-2">
+          We help Gold Coast homeowners shape better kitchens, bathrooms, decks, joinery, flooring and renovations with clear advice before any work begins.
+        </p>
+        <button class="btn btn-primary btn-lg reveal-up delay-3" onclick="openModal()">Talk Through Your Project</button>
       </div>
     </section>
 
@@ -58,7 +72,6 @@ const faqSchema = JSON.stringify({
       </div>
     </section>
 
-    <Gallery />
     <Process />
     <Testimonials reviews={business.reviews} />
     <FAQ faqs={business.faqs} />

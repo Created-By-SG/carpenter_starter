@@ -1,0 +1,88 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = '' } = Astro.props;
+const uid = `text-underline-sweep-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<span class="text-underline-sweep" id={uid}>{text}</span>
+
+<style>
+  .text-underline-sweep {
+    position: relative;
+    display: inline-block;
+    color: currentColor;
+  }
+
+  .text-underline-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.16em;
+    height: 0.1em;
+    min-height: 3px;
+    border-radius: 999px;
+    background:
+      linear-gradient(90deg,
+        transparent 0%,
+        transparent 8%,
+        var(--orange, #e67e22) 26%,
+        var(--orange, #e67e22) 48%,
+        transparent 68%,
+        transparent 100%);
+    background-size: 220% 100%;
+    opacity: 0;
+    transform: translateY(0.12em);
+  }
+
+  .text-underline-sweep.in-view::after {
+    opacity: 1;
+    animation: underlineSweep 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
+  }
+
+  @keyframes underlineSweep {
+    0% {
+      background-position: 120% 50%;
+      transform: translateY(0.12em);
+    }
+    100% {
+      background-position: -120% 50%;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .text-underline-sweep::after {
+      opacity: 1;
+      background: var(--orange, #e67e22);
+      animation: none !important;
+      transform: none;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ uid }}>
+  (function () {
+    var el = document.getElementById(uid);
+    if (!el) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.classList.add('in-view');
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          el.classList.add('in-view');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.18 });
+
+    observer.observe(el);
+  })();
+</script>

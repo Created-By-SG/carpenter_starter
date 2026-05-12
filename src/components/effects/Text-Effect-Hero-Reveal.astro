@@ -1,0 +1,59 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = '' } = Astro.props;
+const words = text.split(' ').filter(Boolean);
+---
+
+<span class="hero-text-reveal" aria-label={text}>
+  {words.map((word, index) => (
+    <span class="hero-text-reveal__word" style={`--word-index:${index}`}>{word}</span>
+  ))}
+</span>
+
+<style>
+  .hero-text-reveal {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.28em;
+    row-gap: 0.04em;
+  }
+
+  .hero-text-reveal__word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.55em) scale(0.98);
+    animation: heroWordReveal 760ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(90ms * var(--word-index));
+  }
+
+  @keyframes heroWordReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(0.55em) scale(0.98);
+      filter: blur(8px);
+    }
+    72% {
+      opacity: 1;
+      transform: translateY(-0.03em) scale(1.01);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-text-reveal__word {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      animation: none;
+    }
+  }
+</style>

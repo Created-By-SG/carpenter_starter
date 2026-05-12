@@ -10,6 +10,8 @@ import Testimonials from '../../components/carpenter/Testimonials.astro';
 import WhyUs from '../../components/carpenter/WhyUs.astro';
 import BlockServiceAreaMap from '../../components/effects/Block-ServiceAreaMap.astro';
 import Gallery from '../../components/carpenter/Gallery.astro';
+import TextEffectHero from '../../components/effects/Text-Effect-Suburbs-Hero.astro';
+import HeroBackgroundEffect from '../../components/effects/Hero-Background-Effect.astro';
 
 export function getStaticPaths() {
   return Object.keys(suburbsData).map((slug) => ({ params: { slug } }));
@@ -33,6 +35,11 @@ const mapSuburbs = allSuburbs.map(([suburbSlug, item]: any[]) => ({
   label: item.pageMeta.title.replace('Carpenters ', ''),
 }));
 const regularQuoteSuburbs = mapSuburbs.map((item) => item.label).join(', ');
+function gridSafeItems(items: any[], fallback: any) {
+  const clean = [...items];
+  if (clean.length === 5) clean.push(fallback);
+  return clean;
+}
 function paragraphs(text = '', size = 2) {
   const sentences = String(text).split(/(?<=[.!?])\s+/).filter(Boolean);
   const chunks = [];
@@ -42,14 +49,19 @@ function paragraphs(text = '', size = 2) {
   return chunks.length ? chunks : [text].filter(Boolean);
 }
 const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: business.faqs.map((faq: any) => ({ '@type': 'Question', name: faq.q, acceptedAnswer: { '@type': 'Answer', text: faq.a } })) });
+const trustGridItems = gridSafeItems(trustItems, 'Free local advice and written quotes before work begins.');
+const serviceHighlightGridItems = gridSafeItems(serviceHighlights, {
+  service: '',
+  label: 'Free Project Advice',
+  detail: 'Tell us what you are planning and we will help you work out the clearest next step.'
+});
 ---
 <Base title={suburb.pageMeta.metaTitle} description={suburb.pageMeta.metaDesc} canonicalUrl={canonicalUrl}>
   <script type="application/ld+json" set:html={faqSchema} slot="head" />
   <main>
     <section class="hero inner-hero">
-      <div class="hero-bg"><img src="/images/hero.webp" alt={`Carpentry in ${suburbName}`} /></div>
-      <div class="hero-overlay"></div>
-      <div class="hero-content"><h1>{suburb.pageMeta.h1}</h1><p>Premium carpentry, joinery and renovations in {suburbName}.</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Get A Free Quote</button><a href={`tel:${business.phoneRaw}`} class="btn btn-accent btn-lg">Call Now</a></div></div>
+      <HeroBackgroundEffect image="/images/hero.webp" imageAlt={`Carpentry in ${suburbName}`} />
+      <div class="hero-content"><h1><TextEffectHero text={suburb.pageMeta.h1} /></h1><p>Premium carpentry, joinery and renovations in {suburbName}.</p><div class="hero-btns"><button class="btn btn-primary btn-lg" onclick="openModal()">Get A Free Quote</button></div></div>
     </section>
     <section class="section service-section detail-block">
       <div class="container">
@@ -63,14 +75,23 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
         </div>
       </div>
     </section>
-    <CTA heading={`Need carpentry in ${suburbName}?`} body="Tell us what you are planning and we will help you work out the clearest next step." button={suburb.cta || 'Get A Free Quote'} />
     <Gallery />
+    <section class="section open-copy-section">
+      <div class="container open-copy">
+        <p class="open-copy__eyebrow reveal-up">Local Carpentry Proof</p>
+        <h2 class="reveal-up delay-1">See The Finish Before You Choose A Carpenter</h2>
+        <p class="reveal-up delay-2">
+          Before and after work is the clearest way to understand the level of care, detail and finish we bring to local homes.
+        </p>
+        <button class="btn btn-primary btn-lg reveal-up delay-3" onclick="openModal()">{suburb.cta || 'Get A Free Quote'}</button>
+      </div>
+    </section>
     {trustItems.length > 0 && (
-      <section class="section service-section detail-block">
+      <section class="section service-section detail-block checklist-section">
         <div class="container reveal-up">
           <h2 class="section-title">{suburb.trustPoints.heading}</h2>
-          <div class="content-card-grid">
-            {trustItems.map((item: string) => (
+          <div class="content-card-grid checklist-grid">
+            {trustGridItems.map((item: string) => (
               <article class="content-card"><p>{item}</p></article>
             ))}
           </div>
@@ -79,15 +100,22 @@ const faqSchema = JSON.stringify({ '@context': 'https://schema.org', '@type': 'F
     )}
     <WhyUs items={business.whyUs} />
     {serviceHighlights.length > 0 && (
-      <section class="section service-section alt-bg detail-block">
+      <section class="section service-section alt-bg detail-block checklist-section">
         <div class="container reveal-up">
           <h2 class="section-title">{suburb.serviceHighlights.heading}</h2>
-          <div class="content-card-grid">
-            {serviceHighlights.map((item: any) => (
-              <a class="content-card service-card-link" href={`/services/${item.service}/`}>
-                <h3>{item.label}</h3>
-                <p>{item.detail}</p>
-              </a>
+          <div class="content-card-grid checklist-grid">
+            {serviceHighlightGridItems.map((item: any) => (
+              item.service ? (
+                <a class="content-card service-card-link" href={`/services/${item.service}/`}>
+                  <h3>{item.label}</h3>
+                  <p>{item.detail}</p>
+                </a>
+              ) : (
+                <article class="content-card">
+                  <h3>{item.label}</h3>
+                  <p>{item.detail}</p>
+                </article>
+              )
             ))}
           </div>
         </div>
